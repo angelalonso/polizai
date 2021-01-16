@@ -8,6 +8,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+device = torch.device("cpu")
+
 # read pickle file
 pickle_in = open("plots_text.pickle","rb")
 movie_plots = pickle.load(pickle_in)
@@ -69,6 +71,9 @@ for w in set(" ".join(movie_plots).split()):
 token2int = {t: i for i, t in int2token.items()}
 
 token2int["the"], int2token[14271]
+
+# set vocabulary size
+vocab_size = len(int2token)
 
 def get_integer_seq(seq):
   return [token2int[w] for w in seq.split()]
@@ -162,7 +167,7 @@ class WordLSTM(nn.Module):
 net = WordLSTM()
 
 # push the model to GPU (avoid it if you are not using the GPU)
-net.cuda()
+#net.cuda()
 
 print(net)
 
@@ -233,11 +238,11 @@ def train(net, epochs=10, batch_size=32, lr=0.001, clip=1, print_every=32):
     criterion = nn.CrossEntropyLoss()
     
     # push model to GPU
-    net.cuda()
+    #net.cuda()
     
     counter = 0
 
-    net.train()
+    net.train(device=device)
 
     for e in range(epochs):
 
