@@ -11,7 +11,7 @@ import torch.nn.functional as F
 device = torch.device("cpu")
 
 # read pickle file
-pickle_in = open("plots_text.pickle","rb")
+pickle_in = open("../data/plots_text.pickle","rb")
 movie_plots = pickle.load(pickle_in)
 
 # count of movie plot summaries
