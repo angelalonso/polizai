@@ -1,17 +1,10 @@
-use warp::{Filter, Rejection, Reply};
+use webcontainer::api::Api;
+use webcontainer::lang::Lang;
+use std::sync::Arc;
+use std::sync::Mutex;
 
-type Result<T> = std::result::Result<T, Rejection>;
-
-#[tokio::main]
-async fn main() {
-    let health_route = warp::path!("health").and_then(health_handler);
-
-    let routes = health_route.with(warp::cors().allow_any_origin());
-
-    println!("Started server at localhost:8000");
-    warp::serve(routes).run(([0, 0, 0, 0], 8000)).await;
-}
-
-async fn health_handler() -> Result<impl Reply> {
-    Ok("OK")
+fn main() {
+    let mut l_state = Arc::new(Mutex::new(Lang::new().unwrap()));
+    let mut a = Api::new().unwrap();
+    a.run(&l_state);
 }
