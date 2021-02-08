@@ -18,3 +18,5 @@ data/
 # Vim backup files
 **/*.swp
 **/*.swo
+
+phrase_backend/target/debug
