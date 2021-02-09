@@ -40,7 +40,7 @@ impl Lang<'_> {
             .input
             .unwrap_or_else(|| PathBuf::from_str("/home/aaf/Downloads/polizai_scripts/reservoir_dogs.txt").unwrap());
             //.unwrap_or_else(|| PathBuf::from_str("poetry.txt").unwrap());
-        let length = opt.length.unwrap_or(350);
+        let length = opt.length.unwrap_or(10);
 
         let phrase = match run(filename, length) {
             Ok(p) => p,
