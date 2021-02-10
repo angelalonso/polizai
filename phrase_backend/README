@@ -1,0 +1,4 @@
+# Local containers
+docker build -t phrase-backend -f ./Dockerfile .
+
+docker run phrase-backend:latest
