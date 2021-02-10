@@ -4,6 +4,10 @@ version = "0.1.0"
 authors = ["Angel Alonso Fonseca <alonsofonseca.angel@gmail.com>"]
 edition = "2018"
 
+[[bin]]
+name = "main"
+path = "src/main.rs"
+
 [dependencies]
 tokio = { version = "0.2", features = ["macros", "rt-threaded"] }
 warp = "0.2"
