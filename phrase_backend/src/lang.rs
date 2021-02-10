@@ -38,7 +38,7 @@ impl Lang<'_> {
         let opt = Opt::from_args();
         let filename = opt
             .input
-            .unwrap_or_else(|| PathBuf::from_str("/home/aaf/Downloads/polizai_scripts/reservoir_dogs.txt").unwrap());
+            .unwrap_or_else(|| PathBuf::from_str("poetry.txt").unwrap());
             //.unwrap_or_else(|| PathBuf::from_str("poetry.txt").unwrap());
         let length = opt.length.unwrap_or(10);
 
