@@ -10,7 +10,7 @@ Cargo.lock
 **/*.rs.bk
 
 # Our datasets were downloaded from somewhere. When applicable, I'd rather document the link
-data/
+**/data/
 
 # Environment variables
 **/.env

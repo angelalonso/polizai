@@ -21,6 +21,7 @@ struct Opt {
 
 //#[derive(Clone)]
 pub struct Lang<'a> {
+    #[allow(dead_code)]
     result: Arc<Mutex<&'a str>>,
 }
 

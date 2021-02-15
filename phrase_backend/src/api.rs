@@ -1,6 +1,5 @@
 use rocket::State;
 use rocket::http::RawStr;
-use rocket::config::{Config, Environment};
 use std::sync::mpsc::SyncSender;
 use std::sync::Arc;
 use std::sync::Mutex;
@@ -8,6 +7,7 @@ use std::sync::Mutex;
 use crate::lang::Lang;
 
 pub struct Api<'a> {
+    #[allow(dead_code)]
     result: Vec<&'a str>,
 }
 
