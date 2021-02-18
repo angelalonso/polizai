@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import logo from './logo.svg';
 import withListLoading from './components/withListLoading';
 import List from './components/List';
+import background from './img/background.png';
 
 
 //class App extends React.Component {
@@ -71,22 +72,32 @@ function App() {
     });
   }, [setAppState]);
   return (
-    <div className='App'>
-      <div className='container'>
-        <h1>My phrases</h1>
-      </div>
-      <div className='phrase-container'>
-        <ListLoading isLoading={appState.loading} phrases={appState.phrases} />
-      </div>
-      <footer>
-        <div className='footer'>
-          Built{' '}
-          <span role='img' aria-label='love'>
-            💚
-          </span>{' '}
+    //<div className='App'>
+    //  <div className='container'>
+    //    <h1>My phrases</h1>
+    //  </div>
+    //  <div className='phrase-container'>
+    //    <ListLoading isLoading={appState.loading} phrases={appState.phrases} />
+    //  </div>
+    //  <footer>
+    //    <div className='footer'>
+    //      Built{' '}
+    //      <span role='img' aria-label='love'>
+    //        
+    //      </span>{' '}
+    //    </div>
+    //  </footer>
+    //</div>
+
+    <div style={{width: 'auto'}}>
+        <div className='phrase-container'>
+          <ListLoading isLoading={appState.loading} phrases={appState.phrases} />
         </div>
-      </footer>
-    </div>
+      <img 
+        style={{backgroundSize : 'cover'}} responsive 
+        src={background}
+      />
+  </div>
   );
 }
 
