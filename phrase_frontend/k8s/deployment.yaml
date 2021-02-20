@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: polizai-frontend-deployment
+  name: polizai-frontend
   labels:
     app: polizai-frontend 
 spec:
