@@ -22,8 +22,8 @@ function App() {
     //envScript.async = true;
     //document.body.appendChild(envScript);
 
-    setAppState({ loading: true });
     const apiUrl = process.env.REACT_APP_ENV_API_URL;
+    setAppState({ loading: true });
     console.log(apiUrl)
     axios.get(apiUrl).then((phrases) => {
       const allphrases = phrases.data;
