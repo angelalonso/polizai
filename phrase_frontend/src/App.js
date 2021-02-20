@@ -16,6 +16,11 @@ function App() {
   });
 
   useEffect(() => {
+    const envScript = document.createElement('script');
+    envScript.src = "env-config.js";
+    document.body.appendChild(envScript);
+
+
     setAppState({ loading: true });
     const apiUrl = process.env.REACT_APP_ENV_API_URL;
     console.log(apiUrl)

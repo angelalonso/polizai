@@ -26,6 +26,6 @@ chmod +x /usr/share/nginx/html/env.sh
 EXPOSE 3000
 
 # Start Nginx server
-CMD ["/bin/bash", "-c", "/usr/share/nginx/html/env.sh"]
-#CMD ["/bin/bash", "-c", "/usr/share/nginx/html/env.sh && nginx -g \"daemon off;\""]
+#CMD ["/bin/bash", "-c", "/usr/share/nginx/html/env.sh"]
+CMD ["/bin/bash", "-c", "/usr/share/nginx/html/env.sh && nginx -g \"daemon off;\""]
 
