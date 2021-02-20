@@ -28,7 +28,7 @@ id
 #echo "===> Running ... "
 #exec serve -s build
 
-cat .env
+#cat .env
 
 #nginx -g "daemon off;"
 
