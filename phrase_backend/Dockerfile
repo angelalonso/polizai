@@ -1,26 +1,28 @@
-#FROM liuchong/rustup
-#
-#
-#ENV ROCKET_ADDRESS=0.0.0.0
-#ENV ROCKET_PORT=8000
-#
-#ADD . /app
-#
-#WORKDIR /app
-#
-#RUN rustup default nightly
-#
-#RUN cargo build
-#
-#CMD ["cargo", "run"]
+FROM rustdocker/rust:nightly as cargo-build 
 
-FROM alpine:3.13.2
+RUN apt-get update 
+RUN apt-get install musl-tools -y 
+RUN /root/.cargo/bin/rustup target add x86_64-unknown-linux-musl 
+RUN USER=root /root/.cargo/bin/cargo new --bin polizai_be 
 
-RUN mkdir /app
+WORKDIR /polizai_be 
 
-ADD ./target/release/main /app/main
-ADD ./data /app/data
-ADD ./poetry.txt /app
+COPY ./Cargo.toml ./Cargo.toml 
+COPY ./Cargo.lock ./Cargo.lock 
 
-#CMD ["/bin/ash", "-c", "ls -lha /app/"]
-CMD ["/app/main"]
+RUN RUSTFLAGS=-Clinker=musl-gcc /root/.cargo/bin/cargo build --release --target=x86_64-unknown-linux-musl 
+RUN rm -f target/x86_64-unknown-linux-musl/release/deps/polizai_be* 
+RUN rm src/*.rs 
+
+COPY ./src ./src 
+
+RUN RUSTFLAGS=-Clinker=musl-gcc /root/.cargo/bin/cargo build --release --target=x86_64-unknown-linux-musl
+
+FROM alpine:latest 
+
+COPY --from=cargo-build /polizai_be/target/x86_64-unknown-linux-musl/release/main . 
+#COPY --from=cargo-build /polizai_be/ . 
+
+CMD ["./main"]
+#CMD ["/bin/ash", "-c", "ls -lha ./target/x86_64-unknown-linux-musl/release/"]
+
