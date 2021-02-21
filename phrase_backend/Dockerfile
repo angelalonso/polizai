@@ -21,8 +21,8 @@ RUN RUSTFLAGS=-Clinker=musl-gcc /root/.cargo/bin/cargo build --release --target=
 FROM alpine:latest 
 
 COPY --from=cargo-build /polizai_be/target/x86_64-unknown-linux-musl/release/main . 
-#COPY --from=cargo-build /polizai_be/ . 
+COPY ./data . 
 
 CMD ["./main"]
-#CMD ["/bin/ash", "-c", "ls -lha ./target/x86_64-unknown-linux-musl/release/"]
+#CMD ["/bin/ash", "-c", "ls -lha /"]
 
