@@ -16,12 +16,6 @@ function App() {
   });
 
   useEffect(() => {
-    //var apiUrl = "none";
-    //const envScript = document.createElement('script');
-    //envScript.src = "env-config.js";
-    //envScript.async = true;
-    //document.body.appendChild(envScript);
-
     const apiUrl = process.env.REACT_APP_ENV_API_URL;
     setAppState({ loading: true });
     console.log(apiUrl)

@@ -1,8 +1,9 @@
 use itertools::izip;
-use std::sync::Arc;
-use std::sync::Mutex;
 use rand::{seq::SliceRandom, thread_rng, Rng};
 use regex::Regex;
+use std::env;
+use std::sync::Arc;
+use std::sync::Mutex;
 use std::{
     collections::HashMap, error::Error, fs::OpenOptions, io::Read, path::PathBuf, str::FromStr,
 };
@@ -21,6 +22,7 @@ struct Opt {
 
 //#[derive(Clone)]
 pub struct Lang<'a> {
+    filename: String,
     #[allow(dead_code)]
     result: Arc<Mutex<&'a str>>,
 }
@@ -29,8 +31,16 @@ pub struct Lang<'a> {
 impl Lang<'_> {
     pub fn new() -> Result<Self, String> {
         let res = Arc::new(Mutex::new("Nothingness"));
+        let filename = match env::var("PHRASES_FILE") {
+            Ok(f) => f,
+            Err(e) => {
+                println!("WARN: {} \n No env variable named PHRASES_FILE found!\n using data/default.txt", e);
+                "data/default.txt".to_string()
+            }
+        };
         Ok(Self {
             result: res,
+            filename,
         })
     }
 
@@ -39,7 +49,7 @@ impl Lang<'_> {
         let opt = Opt::from_args();
         let filename = opt
             .input
-            .unwrap_or_else(|| PathBuf::from_str("poetry.txt").unwrap());
+            .unwrap_or_else(|| PathBuf::from_str(&self.filename).unwrap());
             //.unwrap_or_else(|| PathBuf::from_str("poetry.txt").unwrap());
         let length = opt.length.unwrap_or(10);
 
