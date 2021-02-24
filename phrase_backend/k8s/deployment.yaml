@@ -5,7 +5,7 @@ metadata:
   labels:
     app: polizai-be
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: polizai-be
@@ -19,3 +19,15 @@ spec:
         image: angelalonso/polizai-phrase-backend:v0.1
         ports:
         - containerPort: 8000
+        env:
+        - name: PHRASES_FILE
+          value: "/data/dirtyharry_eastwood.txt"
+        volumeMounts:
+        - mountPath: /data # Path of the volume in the container
+          name: data-volume
+
+      volumes:
+      - name: data-volume
+        hostPath:
+          path: /microk8s/polizai-be-data # Path of the directory on the Host (node). I add a link to the actual data
+          type: Directory

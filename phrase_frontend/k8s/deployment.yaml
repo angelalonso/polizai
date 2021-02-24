@@ -5,7 +5,7 @@ metadata:
   labels:
     app: polizai-fe
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: polizai-fe
