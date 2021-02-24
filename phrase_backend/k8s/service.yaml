@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: polizai-fe
+  name: polizai-be
 spec:
   selector:
-    app: polizai-fe 
+    app: polizai-be 
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 3000
+      port: 8000
+      targetPort: 8000

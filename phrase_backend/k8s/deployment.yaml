@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: polizai-be
+  labels:
+    app: polizai-be
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: polizai-be
+  template:
+    metadata:
+      labels:
+        app: polizai-be
+    spec:
+      containers:
+      - name: polizai-be
+        image: angelalonso/polizai-phrase-backend:v0.1
+        ports:
+        - containerPort: 8000

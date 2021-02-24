@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: polizai-frontend
+  name: polizai-fe
   labels:
-    app: polizai-frontend 
+    app: polizai-fe
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: polizai-frontend 
+      app: polizai-fe
   template:
     metadata:
       labels:
-        app: polizai-frontend 
+        app: polizai-fe
     spec:
       containers:
-      - name: polizai-frontend 
-        image: angelalonso/polizai-phrase-frontend:v0.1
+      - name: polizai-fe
+        image: angelalonso/polizai-phrase-frontend:v0.2
         ports:
         - containerPort: 3000
