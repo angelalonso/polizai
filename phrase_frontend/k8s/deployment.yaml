@@ -19,3 +19,6 @@ spec:
         image: angelalonso/polizai-phrase-frontend:v0.3
         ports:
         - containerPort: 3000
+        env:
+        - name: REACT_APP_ENV_API_URL
+          value: "http://polizai-be.default.svc.cluster.local:8000"
