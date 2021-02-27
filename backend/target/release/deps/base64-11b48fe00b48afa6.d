@@ -1,0 +1,13 @@
+/home/aaf/Software/Dev/polizai/phrase_backend/target/release/deps/base64-11b48fe00b48afa6.rmeta: /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/lib.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/chunked_encoder.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/display.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/line_wrap.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/tables.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/encode.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/decode.rs
+
+/home/aaf/Software/Dev/polizai/phrase_backend/target/release/deps/libbase64-11b48fe00b48afa6.rlib: /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/lib.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/chunked_encoder.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/display.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/line_wrap.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/tables.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/encode.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/decode.rs
+
+/home/aaf/Software/Dev/polizai/phrase_backend/target/release/deps/base64-11b48fe00b48afa6.d: /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/lib.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/chunked_encoder.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/display.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/line_wrap.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/tables.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/encode.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/decode.rs
+
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/lib.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/chunked_encoder.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/display.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/line_wrap.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/tables.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/encode.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.3/src/decode.rs:

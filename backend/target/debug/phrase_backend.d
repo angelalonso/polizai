@@ -1,0 +1,1 @@
+/home/aaf/Software/Dev/polizai/phrase_backend/target/debug/phrase_backend: /home/aaf/Software/Dev/polizai/phrase_backend/src/api.rs /home/aaf/Software/Dev/polizai/phrase_backend/src/lang.rs /home/aaf/Software/Dev/polizai/phrase_backend/src/lib.rs /home/aaf/Software/Dev/polizai/phrase_backend/src/main.rs build.rs

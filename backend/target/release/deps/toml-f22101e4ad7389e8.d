@@ -1,0 +1,14 @@
+/home/aaf/Software/Dev/polizai/phrase_backend/target/release/deps/toml-f22101e4ad7389e8.rmeta: /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/lib.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/value.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/datetime.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/ser.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/de.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/tokens.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/macros.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/spanned.rs
+
+/home/aaf/Software/Dev/polizai/phrase_backend/target/release/deps/libtoml-f22101e4ad7389e8.rlib: /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/lib.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/value.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/datetime.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/ser.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/de.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/tokens.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/macros.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/spanned.rs
+
+/home/aaf/Software/Dev/polizai/phrase_backend/target/release/deps/toml-f22101e4ad7389e8.d: /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/lib.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/value.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/datetime.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/ser.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/de.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/tokens.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/macros.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/spanned.rs
+
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/lib.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/value.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/datetime.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/ser.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/de.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/tokens.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/macros.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/toml-0.4.10/src/spanned.rs:

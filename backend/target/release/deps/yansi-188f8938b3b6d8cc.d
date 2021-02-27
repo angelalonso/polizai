@@ -1,0 +1,13 @@
+/home/aaf/Software/Dev/polizai/phrase_backend/target/release/deps/yansi-188f8938b3b6d8cc.rmeta: /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/lib.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/docify.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/macros.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/windows.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/paint.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/style.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/color.rs
+
+/home/aaf/Software/Dev/polizai/phrase_backend/target/release/deps/libyansi-188f8938b3b6d8cc.rlib: /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/lib.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/docify.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/macros.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/windows.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/paint.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/style.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/color.rs
+
+/home/aaf/Software/Dev/polizai/phrase_backend/target/release/deps/yansi-188f8938b3b6d8cc.d: /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/lib.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/docify.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/macros.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/windows.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/paint.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/style.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/color.rs
+
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/lib.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/docify.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/macros.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/windows.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/paint.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/style.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/yansi-0.5.0/src/color.rs:

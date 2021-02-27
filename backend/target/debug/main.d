@@ -1,0 +1,1 @@
+/home/aaf/Software/Dev/polizai/backend/target/debug/main: /home/aaf/Software/Dev/polizai/backend/src/api.rs /home/aaf/Software/Dev/polizai/backend/src/lang.rs /home/aaf/Software/Dev/polizai/backend/src/lib.rs /home/aaf/Software/Dev/polizai/backend/src/main.rs build.rs

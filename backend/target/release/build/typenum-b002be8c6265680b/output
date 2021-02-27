@@ -1,0 +1,2 @@
+cargo:rustc-env=TYPENUM_BUILD_CONSTS=/home/aaf/Software/Dev/polizai/phrase_backend/target/release/build/typenum-b002be8c6265680b/out/consts.rs
+cargo:rustc-env=TYPENUM_BUILD_OP=/home/aaf/Software/Dev/polizai/phrase_backend/target/release/build/typenum-b002be8c6265680b/out/op.rs

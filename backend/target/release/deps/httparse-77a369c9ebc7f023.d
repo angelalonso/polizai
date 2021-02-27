@@ -1,0 +1,12 @@
+/home/aaf/Software/Dev/polizai/phrase_backend/target/release/deps/httparse-77a369c9ebc7f023.rmeta: /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/lib.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/iter.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/macros.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/simd/mod.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/simd/sse42.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/simd/avx2.rs
+
+/home/aaf/Software/Dev/polizai/phrase_backend/target/release/deps/libhttparse-77a369c9ebc7f023.rlib: /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/lib.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/iter.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/macros.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/simd/mod.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/simd/sse42.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/simd/avx2.rs
+
+/home/aaf/Software/Dev/polizai/phrase_backend/target/release/deps/httparse-77a369c9ebc7f023.d: /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/lib.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/iter.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/macros.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/simd/mod.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/simd/sse42.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/simd/avx2.rs
+
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/lib.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/iter.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/macros.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/simd/mod.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/simd/sse42.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/httparse-1.3.5/src/simd/avx2.rs:

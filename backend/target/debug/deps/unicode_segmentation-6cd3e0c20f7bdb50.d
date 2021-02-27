@@ -1,0 +1,11 @@
+/home/aaf/Software/Dev/polizai/backend/target/debug/deps/unicode_segmentation-6cd3e0c20f7bdb50.rmeta: /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/lib.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/grapheme.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/tables.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/word.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/sentence.rs
+
+/home/aaf/Software/Dev/polizai/backend/target/debug/deps/libunicode_segmentation-6cd3e0c20f7bdb50.rlib: /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/lib.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/grapheme.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/tables.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/word.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/sentence.rs
+
+/home/aaf/Software/Dev/polizai/backend/target/debug/deps/unicode_segmentation-6cd3e0c20f7bdb50.d: /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/lib.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/grapheme.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/tables.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/word.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/sentence.rs
+
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/lib.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/grapheme.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/tables.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/word.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/unicode-segmentation-1.7.1/src/sentence.rs:

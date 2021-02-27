@@ -1,0 +1,14 @@
+/home/aaf/Software/Dev/polizai/phrase_backend/target/release/deps/heck-64c40b02869b6714.rmeta: /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/lib.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/camel.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/kebab.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/mixed.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/shouty_kebab.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/shouty_snake.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/snake.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/title.rs
+
+/home/aaf/Software/Dev/polizai/phrase_backend/target/release/deps/libheck-64c40b02869b6714.rlib: /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/lib.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/camel.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/kebab.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/mixed.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/shouty_kebab.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/shouty_snake.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/snake.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/title.rs
+
+/home/aaf/Software/Dev/polizai/phrase_backend/target/release/deps/heck-64c40b02869b6714.d: /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/lib.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/camel.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/kebab.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/mixed.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/shouty_kebab.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/shouty_snake.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/snake.rs /home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/title.rs
+
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/lib.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/camel.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/kebab.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/mixed.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/shouty_kebab.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/shouty_snake.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/snake.rs:
+/home/aaf/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.2/src/title.rs:
