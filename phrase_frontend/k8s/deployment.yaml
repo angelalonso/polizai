@@ -21,4 +21,4 @@ spec:
         - containerPort: 3000
         env:
         - name: REACT_APP_ENV_API_URL
-          value: "http://polizai-be.default.svc.cluster.local:8000"
+          value: "https://poliz.ai/api"
