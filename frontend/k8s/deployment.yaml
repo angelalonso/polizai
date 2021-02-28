@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: polizai-fe
-        image: angelalonso/polizai-phrase-frontend:v0.3
+        image: angelalonso/polizai-phrase-frontend:v0.4
         ports:
         - containerPort: 3000
         env:
