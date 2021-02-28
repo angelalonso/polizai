@@ -16,6 +16,7 @@ function App() {
   });
 
   useEffect(() => {
+    document.title = "Trained Cop says"
     const apiUrl = process.env.REACT_APP_ENV_API_URL;
     setAppState({ loading: true });
     console.log(apiUrl)
@@ -26,14 +27,14 @@ function App() {
   }, [setAppState]);
   return (
 
-    <div style={{width: 'auto'}}>
-        <div className='phrase-container'>
+    <div >
+        <div className='phrase-container' id='phrase'>
           <ListLoading isLoading={appState.loading} phrases={appState.phrases} />
         </div>
-      <img 
-        style={{backgroundSize : 'cover'}} responsive 
-        src={background}
-      />
+        <img id='image' src={background}/>
+        <div id='bottom_msg' >
+          ... said the trained cop!
+        </div>
   </div>
   );
 }
