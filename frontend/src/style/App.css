@@ -1,0 +1,88 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  height: 70px;
+  padding: 20px;
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* new css for entry component */
+
+* {
+  box-sizing: border-box; 
+}
+
+.entries {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.App-header h2 {
+  margin: 0;
+}
+
+.add-entries {
+  text-align: center;
+}
+
+.add-entries button {
+  font-size: 16px;
+  padding: 8px;
+  margin: 0 10px 30px 10px;
+}
+
+.entry {
+  padding: 5px 25px 10px 25px;
+  max-width: 25%;
+}
+
+/* entry form styles */
+
+.entry-form {
+  width: 250px;
+  margin: 0 auto;
+}
+
+.entry-form input, .entry-form textarea {
+  width: 250px;
+  font-size: 14px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.entry-form button {
+  font-size: 16px;
+  padding: 4px;
+  margin: 10px 10px 30px 10px;
+}
