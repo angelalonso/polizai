@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+function getList(children) {
+    return Object
+        .values(children)
+        .reduce((ul, { info: { name }, children }) => {
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(name));
+            ul.appendChild(li);
+            if (children) {
+                li.appendChild(getList(children));
+            }
+            return ul;
+        }, document.createElement('ul'));
+}
+
+var full_list = { 
+  children: { 
+    vegetables: { 
+      info: { name: "Vegetables" }, 
+      files: {}, 
+      children: { 
+        "green vegetables": { 
+          info: { name: "Green Vegetables" }, 
+          files: {}, 
+          children: { 
+            lettuce: { 
+              info: { name: "Lettuce" }, 
+              files: {} 
+            }, 
+            cucumber: { 
+              info: { name: "Cucumber" }, 
+              files: {} 
+            } 
+          } 
+        }, 
+        "orange vegetables": { 
+          info: { name: "Orange Vegetables" }, 
+          files: {}, 
+          children: { 
+            "3 deep": { 
+              info: { name: "Carrot" }, 
+              files: {} 
+            } 
+          } 
+        } 
+      } 
+    }, 
+    fruit: { 
+      info: { name: "Fruit" }, 
+      files: {}, 
+      children: { 
+        apple: { 
+          info: { name: "Apple" }, 
+          files: {} 
+        } 
+      } 
+    } 
+  } 
+};
+
+var new_list = { 
+};
+
+document.body.appendChild(getList(full_list.children));
+</script>
+
+</body>
+</html>
