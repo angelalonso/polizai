@@ -1,0 +1,11 @@
+ul {
+  background-color: #DDD;
+  color: #444;
+  line-height: 40px;
+  list-style-type: none;
+  padding-left: 0.5em;
+}
+
+li {
+  border: 1px solid #CCC;
+}
