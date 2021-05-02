@@ -1,154 +1,89 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import './App.css';
+import { inData } from "./data";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { open: "00" };
-    this.testClick = this.testClick.bind(this);
+    this.state = { 
+      open: "00",
+      in_data: inData,
+      shown_data: inData,
+    };
+    this.doIndentation = this.doIndentation.bind(this);
     this.getObjects = this.getObjects.bind(this);
+    this.refresh = this.refresh.bind(this);
   }
 
-  testClick() {
-    console.log("TOUCHED");
-  }
-
-  getObjects() {
-    var currently_open = this.state.open;
-    console.log(currently_open);
-  }
-
-  render() {
-
-    var new_data = { 
-      "00": { 
-        "name": "World",
-        "amount": 100,
-        "percent": 100,
-        "childof": ""
-      },
-      "00_01": { 
-        "name": "Germany",
-        "amount": 60,
-        "percent": 60,
-        "childof": "00"
-      },
-      "00_01_01": { 
-        "name": "Buildings",
-        "amount": 60,
-        "percent": 60,
-        "childof": "00_01"
-      },
-      "00_01_02": { 
-        "name": "Non Combustion",
-        "amount": 60,
-        "percent": 60,
-        "childof": "00_01"
-      },
-      "00_01_03": { 
-        "name": "Other Industrial Combustion",
-        "amount": 60,
-        "percent": 60,
-        "childof": "00_01"
-      },
-      "00_01_04": { 
-        "name": "Power Industry",
-        "amount": 60,
-        "percent": 60,
-        "childof": "00_01"
-      },
-      "00_01_05": { 
-        "name": "Transport",
-        "amount": 60,
-        "percent": 60,
-        "childof": "00_01"
-      },
-      "00_02": { 
-        "name": "France",
-        "amount": 40,
-        "percent": 40,
-        "childof": "00"
-      },
-      "00_02_01": { 
-        "name": "Buildings",
-        "amount": 60,
-        "percent": 60,
-        "childof": "00_02"
-      },
-      "00_02_02": { 
-        "name": "Non Combustion",
-        "amount": 60,
-        "percent": 60,
-        "childof": "00_02"
-      },
-      "00_02_03": { 
-        "name": "Other Industrial Combustion",
-        "amount": 60,
-        "percent": 60,
-        "childof": "00_02"
-      },
-      "00_02_04": { 
-        "name": "Power Industry",
-        "amount": 60,
-        "percent": 60,
-        "childof": "00_02"
-      },
-      "00_02_05": { 
-        "name": "Transport",
-        "amount": 60,
-        "percent": 60,
-        "childof": "00_02"
-      }
-    }
-
-    const getIndentation = function(key) {
-      var count = (key.match(/_/g) || []).length;
+  doIndentation(this_key) {
+      var count = (this_key.match(/_/g) || []).length;
       return count * 10;
     }
 
-    var arr = [];
-    Object.keys(new_data).forEach(function(key){
-      var full_object = new_data[key];
-      full_object['k'] = key;
-      arr.push(full_object);
+  getObjects(selected_key, nest_state) {
+    var data_sample = this.state.in_data;
+    var selected_arr = [];
+    var currently_open = this.state.open;
+    Object.keys(data_sample).forEach(function(key){
+      var k = data_sample[key].k;
+      if (nest_state === "closed") {
+        if (k === selected_key) {
+          var full_object = data_sample[key];
+          selected_arr.push(full_object);
+        }
+      } else {
+        var key_degrees = (k.match(/_/g) || []).length;
+        var selected_key_degrees = (selected_key.match(/_/g) || []).length;
+        if ((k === selected_key) || ((k.includes(selected_key + "_")) && !( key_degrees > selected_key_degrees + 1))) {
+          var full_object = data_sample[key];
+          selected_arr.push(full_object);
+        }
+      }
     })
+    return selected_arr
+  }
 
-    var shown_objects = this.getObjects();
+  getKey(selected_key) {
+    var nest_state = "open";
 
+    var key_objects = this.getObjects(selected_key, nest_state);
+    this.setState({
+      shown_data: key_objects,
+
+    })
+    this.render();
+
+  }
+
+  refresh() {
+
+    var data_sample = this.state.shown_data;
     return <ul key="main_ul" style={{ marginLeft: -30 }}>
-        {arr.map(
+        {data_sample.map(
           item => 
-            <div key={item.key} className="button_main" style={{ marginLeft: getIndentation(item.k) }}>
-              <Button variant="contained" onClick={this.getObjects}>
+            <div key={item.key} className="button_main" style={{ marginLeft: this.doIndentation(item.k) }}>
+              <Button variant="contained" onClick={this.getKey.bind(this, item.k)}>
                 <div className="button_name">{item.name}</div>
                 <div className="button_amount">Amount: {item.amount}</div>
                 <div className="button_percent">Percent: {item.percent}</div>
-                <div className="button_percent">Test: {item.indentation}</div>
               </Button>
             </div>
-          //item => <MyAppChild indentation={getIndentation(item.k)} key={item.key} name={item.name} amount={item.amount} percent={item.percent} />
         )}
       </ul>;
     }
-}
 
+  componentWillMount() {
+    var key_objects = this.getObjects("00", "open");
+    this.setState({
+      shown_data: key_objects,
 
-class MyAppChild extends React.Component {
-  testClick() {
-    console.log("TOUCHED");
+    })
   }
 
   render() {
-    return <div key={this.props.key} className="button_main" style={{ marginLeft: this.props.indentation }}>
-        <Button variant="contained" onClick={this.testClick}>
-          <div className="button_name">{this.props.name}</div>
-          <div className="button_amount">Amount: {this.props.amount}</div>
-          <div className="button_percent">Percent: {this.props.percent}</div>
-          <div className="button_percent">Test: {this.props.indentation}</div>
-        </Button>
-      </div>;
-  }
+    return this.refresh();
+    }
 }
 
 export default App;
