@@ -3,6 +3,22 @@ import Button from '@material-ui/core/Button';
 import './App.css';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { open: "00" };
+    this.testClick = this.testClick.bind(this);
+    this.getObjects = this.getObjects.bind(this);
+  }
+
+  testClick() {
+    console.log("TOUCHED");
+  }
+
+  getObjects() {
+    var currently_open = this.state.open;
+    console.log(currently_open);
+  }
+
   render() {
 
     var new_data = { 
@@ -97,9 +113,21 @@ class App extends React.Component {
       full_object['k'] = key;
       arr.push(full_object);
     })
+
+    var shown_objects = this.getObjects();
+
     return <ul key="main_ul" style={{ marginLeft: -30 }}>
         {arr.map(
-          item => <MyAppChild indentation={getIndentation(item.k)} key={item.key} name={item.name} amount={item.amount} percent={item.percent} />
+          item => 
+            <div key={item.key} className="button_main" style={{ marginLeft: getIndentation(item.k) }}>
+              <Button variant="contained" onClick={this.getObjects}>
+                <div className="button_name">{item.name}</div>
+                <div className="button_amount">Amount: {item.amount}</div>
+                <div className="button_percent">Percent: {item.percent}</div>
+                <div className="button_percent">Test: {item.indentation}</div>
+              </Button>
+            </div>
+          //item => <MyAppChild indentation={getIndentation(item.k)} key={item.key} name={item.name} amount={item.amount} percent={item.percent} />
         )}
       </ul>;
     }
