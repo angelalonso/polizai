@@ -25,8 +25,16 @@ class App extends React.Component {
     var data_sample = this.state.in_data;
     var selected_arr = [];
     var currently_open = this.state.open;
+    var parent_keys = selected_key.split("_");
+    console.log(parent_keys.length);
     Object.keys(data_sample).forEach(function(key){
       var k = data_sample[key].k;
+      for (let i =0; i < parent_keys.length; i++) {
+        if (k === parent_keys.slice(0, i).join("_")) {
+          var full_object = data_sample[key];
+          selected_arr.push(full_object);
+        }
+      }
       if (nest_state === "closed") {
         if (k === selected_key) {
           var full_object = data_sample[key];
