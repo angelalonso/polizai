@@ -7,7 +7,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      open: "00",
+      selected_key: "00",
+      nest_state: "open",
       in_data: inData,
       shown_data: inData,
     };
@@ -21,28 +22,35 @@ class App extends React.Component {
       return count * 10;
     }
 
-  getObjects(selected_key, nest_state) {
+  getObjects(nest_state_in) {
     var data_sample = this.state.in_data;
+    var nest_state = this.state.nest_state;
     var selected_arr = [];
-    var currently_open = this.state.open;
+    var selected_key = this.state.selected_key;
     var parent_keys = selected_key.split("_");
-    console.log(parent_keys.length);
+    var selected_key_degrees = (selected_key.match(/_/g) || []).length;
     Object.keys(data_sample).forEach(function(key){
       var k = data_sample[key].k;
+      var key_degrees = (k.match(/_/g) || []).length;
+      // Show parents
       for (let i =0; i < parent_keys.length; i++) {
         if (k === parent_keys.slice(0, i).join("_")) {
           var full_object = data_sample[key];
           selected_arr.push(full_object);
         }
       }
+      // Show "siblings"
+      if ((key_degrees === selected_key_degrees) && !(k === selected_key)) {
+          var full_object = data_sample[key];
+          selected_arr.push(full_object);
+      }
+      // SHow itself and children
       if (nest_state === "closed") {
         if (k === selected_key) {
           var full_object = data_sample[key];
           selected_arr.push(full_object);
         }
       } else {
-        var key_degrees = (k.match(/_/g) || []).length;
-        var selected_key_degrees = (selected_key.match(/_/g) || []).length;
         if ((k === selected_key) || ((k.includes(selected_key + "_")) && !( key_degrees > selected_key_degrees + 1))) {
           var full_object = data_sample[key];
           selected_arr.push(full_object);
@@ -53,19 +61,28 @@ class App extends React.Component {
   }
 
   getKey(selected_key) {
-    var nest_state = "open";
+    if (selected_key === this.state.selected_key) {
+      if (this.state.nest_state === "open") {
+        var new_nest_state = "closed";
+      } else {
+        var new_nest_state = "open";
+      }
+    } else {
+      new_nest_state = "open";
+    }
 
-    var key_objects = this.getObjects(selected_key, nest_state);
     this.setState({
-      shown_data: key_objects,
-
-    })
-    this.render();
-
+      selected_key: selected_key,
+      nest_state: new_nest_state,
+    }, function () {
+        var key_objects = this.getObjects(new_nest_state);
+        this.setState({
+          shown_data: key_objects,
+        })
+    });
   }
 
   refresh() {
-
     var data_sample = this.state.shown_data;
     return <ul key="main_ul" style={{ marginLeft: -30 }}>
         {data_sample.map(
@@ -78,11 +95,11 @@ class App extends React.Component {
               </Button>
             </div>
         )}
-      </ul>;
-    }
+    </ul>;
+  }
 
-  componentWillMount() {
-    var key_objects = this.getObjects("00", "open");
+  UNSAFE_componentWillMount() {
+    var key_objects = this.getObjects("open");
     this.setState({
       shown_data: key_objects,
 
@@ -91,7 +108,7 @@ class App extends React.Component {
 
   render() {
     return this.refresh();
-    }
+  }
 }
 
 export default App;
