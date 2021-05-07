@@ -1,7 +1,10 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+//import AppBar from '@material-ui/core/AppBar';
+//import ToolBar from '@material-ui/core/ToolBar';
 import '../style/App.css';
 import { inData } from "../data/data";
+import Header from "./Header";
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +26,6 @@ class App extends React.Component {
     }
 
   getObjects() {
-    //TODO: rename these variables 
     var data_original = this.state.in_data;
     var nest_state = this.state.nest_state;
     var result = [];
@@ -96,18 +98,24 @@ class App extends React.Component {
 
   refresh() {
     var data_sample = this.state.shown_data;
-    return <ul key="main_ul" style={{ marginLeft: -30 }}>
+    return <div style={{ position:"absolute" }}> 
+      <div> <Header name="testname" setName="testhandlename" />
+      </div>
+      <div style={{ position: "relative", top: "3em" }}>
+      <ul key="main_ul" style={{ marginLeft: -30, marginRight: 10, width: '100%' }}>
         {data_sample.map(
           item => 
             <div key={item.key} className="button_main" style={{ marginLeft: this.doIndentation(item.k) }}>
               <Button variant="contained" onClick={this.getKey.bind(this, item.k)}>
                 <div className="button_name">{item.name}</div>
-                <div className="button_amount">Amount: {item.amount}</div>
-                <div className="button_percent">Percent: {item.percent}</div>
+                <div className="button_amount">{item.amount} Tonnes/Yr.</div>
+                <div className="button_percent">{item.percent} % of Total</div>
               </Button>
             </div>
         )}
-    </ul>;
+    </ul>
+    </div>
+  </div>;
   }
 
   componentDidMount() {
@@ -119,7 +127,17 @@ class App extends React.Component {
   }
 
   render() {
-    return this.refresh();
+    return (
+    //<React.Fragment>
+    //  <AppBar position="fixed">
+    //    <ToolBar>
+    //      {
+            this.refresh()
+    //      }
+    //    </ToolBar>
+    //  </AppBar>
+    //</React.Fragment>
+    );
   }
 }
 

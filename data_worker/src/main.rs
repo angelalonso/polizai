@@ -17,9 +17,12 @@ struct Entry {
     amount: f32,
     percent: f32,
     childof: String,
+    source: String,
 }
 
 fn load_edgar() -> Result<()> {
+    let source = "https://edgar.jrc.ec.europa.eu booklet2020, year 2019";
+
     let mut all_entries: Vec<Entry> = [].to_vec();
     let file_path = "../EDGAR_fossil_CO2_totals_by_country.csv";
     let head_f = match File::open(file_path) {
@@ -58,6 +61,7 @@ fn load_edgar() -> Result<()> {
                         amount: co2_amount,
                         percent: 100.0,
                         childof: "".to_string(),
+                        source: source.to_string(),
                     };
                     all_entries.push(e);
                     totalco2 = co2_amount;
@@ -108,6 +112,7 @@ fn load_edgar() -> Result<()> {
                         amount: co2_amount,
                         percent: this_percent,
                         childof: "00".to_string(),
+                        source: source.to_string(),
                     };
                     ix_totalco2 += co2_amount;
                     all_entries.push(e);

@@ -12,3 +12,4 @@ Cargo.lock
 # my own vim 
 **/*.swp
 **/*.swo
+**/data.js
