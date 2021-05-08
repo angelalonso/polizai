@@ -18,6 +18,9 @@ class App extends React.Component {
     this.doIndentation = this.doIndentation.bind(this);
     this.getObjects = this.getObjects.bind(this);
     this.refresh = this.refresh.bind(this);
+    inData.sort(function (a, b) {
+        return a.amount < b.amount;
+    });
   }
 
   doIndentation(this_key) {
@@ -98,18 +101,19 @@ class App extends React.Component {
 
   refresh() {
     var data_sample = this.state.shown_data;
-    return <div style={{ position:"absolute" }}> 
+    return <div style={{ display: "block", width: "100%", position:"absolute" }}> 
       <div> <Header name="testname" setName="testhandlename" />
       </div>
-      <div style={{ position: "relative", top: "3em" }}>
-      <ul key="main_ul" style={{ marginLeft: -30, marginRight: 10, width: '100%' }}>
+      <div style={{ display: "block", width: "100%", position: "relative", top: "3em" }}>
+      <ul key="main_ul" style={{ display: "block", width: "100%", marginLeft: -30, marginRight: 10, width: '100%' }}>
         {data_sample.map(
           item => 
-            <div key={item.key} className="button_main" style={{ marginLeft: this.doIndentation(item.k) }}>
-              <Button variant="contained" onClick={this.getKey.bind(this, item.k)}>
-                <div className="button_name">{item.name}</div>
-                <div className="button_amount">{item.amount} Tonnes/Yr.</div>
-                <div className="button_percent">{item.percent} % of Total</div>
+            <div key={item.key} style={{display: "block"}} className="button_main" style={{ marginLeft: this.doIndentation(item.k) }}>
+              <Button variant="contained" style={{display: "grid", width: "99%"}} onClick={this.getKey.bind(this, item.k)}>
+                <div className="button_name" style={{position: "absolute", alignSelf: "center", left: 0}} >{item.name}</div>
+                <div className="button_amount" style={{alignSelf: "center"}}>{item.amount} Tonnes/Yr.</div>
+                <div className="button_percent" style={{position: "absolute", right: 0, top: 0}} >{item.percent} % of Total</div>
+                <div className="percent_bar" style={{ width: item.percent + "%" }} ></div>
               </Button>
             </div>
         )}

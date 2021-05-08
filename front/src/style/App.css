@@ -53,6 +53,13 @@
   margin: 5px;
 }
 .button_percent {
-  align: right;
   margin: 5px;
+}
+
+.percent_bar {
+  background-color: #777;
+  position: absolute;
+  left: 4px;
+  bottom: 1px;
+  height: 2px;
 }
