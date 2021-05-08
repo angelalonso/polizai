@@ -111,8 +111,8 @@ class App extends React.Component {
             <div key={item.key} style={{display: "block"}} className="button_main" style={{ marginLeft: this.doIndentation(item.k) }}>
               <Button variant="contained" style={{display: "grid", width: "99%"}} onClick={this.getKey.bind(this, item.k)}>
                 <div className="button_name" style={{position: "absolute", alignSelf: "center", left: 0}} >{item.name}</div>
-                <div className="button_amount" style={{alignSelf: "center"}}>{item.amount} Tonnes/Yr.</div>
-                <div className="button_percent" style={{position: "absolute", right: 0, top: 0}} >{item.percent} % of Total</div>
+                <div className="button_amount" style={{alignSelf: "center"}}>{Math.round(item.amount * 10) / 10} Ton./Yr.</div>
+                <div className="button_percent" style={{position: "absolute", right: 0, top: 0}} >{Math.round(item.percent * 10) / 10} % of Total</div>
                 <div className="percent_bar" style={{ width: item.percent + "%" }} ></div>
               </Button>
             </div>
