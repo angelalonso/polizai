@@ -1,7 +1,5 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-//import AppBar from '@material-ui/core/AppBar';
-//import ToolBar from '@material-ui/core/ToolBar';
 import '../style/App.css';
 import { inData } from "../data/data";
 import Header from "./Header";
@@ -18,9 +16,9 @@ class App extends React.Component {
     this.doIndentation = this.doIndentation.bind(this);
     this.getObjects = this.getObjects.bind(this);
     this.refresh = this.refresh.bind(this);
-    inData.sort(function (a, b) {
-        return a.amount < b.amount;
-    });
+    //inData.sort(function (a, b) {
+    //    return a.amount < b.amount;
+    //});
   }
 
   doIndentation(this_key) {

@@ -6,3 +6,9 @@ wget https://edgar.jrc.ec.europa.eu/booklet/$EDGAR
 python3 export.py $EDGAR $EDGAR_SHEET $EDGAR_RESULT
 
 rm $EDGAR
+
+cargo run
+
+#rm $EDGAR_RESULT
+mv data.js ../front/src/data/data.js
+

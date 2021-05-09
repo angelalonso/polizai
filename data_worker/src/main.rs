@@ -1,7 +1,6 @@
 #![feature(with_options)]
 extern crate csv;
 extern crate serde_json;
-#[macro_use] extern crate serde;
 
 use std::fs;
 use std::fs::File;
@@ -24,7 +23,7 @@ fn load_edgar() -> Result<()> {
     let source = "https://edgar.jrc.ec.europa.eu booklet2020, year 2019";
 
     let mut all_entries: Vec<Entry> = [].to_vec();
-    let file_path = "../EDGAR_fossil_CO2_totals_by_country.csv";
+    let file_path = "./EDGAR_fossil_CO2_totals_by_country.csv";
     let head_f = match File::open(file_path) {
         Ok(f) => f,
         Err(e) => {
@@ -37,6 +36,7 @@ fn load_edgar() -> Result<()> {
         .from_reader(head_f);
     // get "Global Total" entry first
     let mut totalco2 = 0.0;
+    #[allow(unused_variables)]
     let mut ix_totalco2 = 0.0;
     for result in head_rdr.records() {
         let record = match result {
@@ -124,14 +124,16 @@ fn load_edgar() -> Result<()> {
         }
     }
 
-    println!("{:#x?}", all_entries);
+    let mut sorted_entries = all_entries.clone();
+    //sorted_entries.sort_by_key(|d| d.clone().name);
+    sorted_entries.sort_by(|a, b| b.amount.partial_cmp(&a.amount).unwrap());
     // check the sum of all is the same as the global total
     //println!("{:#x?}", ix_totalco2);
     //println!("{:#x?}", totalco2);
-    ::serde_json::to_writer(&File::create("data_json_temp").unwrap(), &all_entries)?;
+    // TODO: NEEDED? ::serde_json::to_writer(&File::create("data_json_temp").unwrap(), &sorted_entries)?;
     let json_start = "export const inData = ";
     fs::write("data.js", json_start).expect("Unable to write to file");
-    ::serde_json::to_writer(&File::with_options().append(true).open("data.js").unwrap(), &all_entries)?;
+    ::serde_json::to_writer(&File::with_options().append(true).open("data.js").unwrap(), &sorted_entries)?;
     Ok(())
 }
 
