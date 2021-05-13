@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: polizai-co2
+  labels:
+    app: polizai-co2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: polizai-co2
+  template:
+    metadata:
+      labels:
+        app: polizai-co2
+    spec:
+      containers:
+      - name: polizai-co2
+        image: angelalonso/polizai-co2:v0.1
+        ports:
+        - containerPort: 80
