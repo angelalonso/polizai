@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: polizai-co2
-        image: angelalonso/polizai_co2:v0.1
+        image: angelalonso/polizai-co2:v0.1
         ports:
         - containerPort: 80
