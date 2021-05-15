@@ -23,8 +23,10 @@ fn load_edgar() -> Result<()> {
     let source = "https://edgar.jrc.ec.europa.eu booklet2020, year 2019";
 
     let mut all_entries: Vec<Entry> = [].to_vec();
-    let file_path = "./EDGAR_fossil_CO2_totals_by_country.csv";
-    let head_f = match File::open(file_path) {
+
+    // Per Country Sheet
+    let file_country_path = "./EDGAR_fossil_CO2_totals_by_country.csv";
+    let head_f = match File::open(file_country_path) {
         Ok(f) => f,
         Err(e) => {
             println!("{:?}", e);
@@ -74,7 +76,7 @@ fn load_edgar() -> Result<()> {
     };
     //  get the rest
     let mut key = 0;
-    let f = match File::open(file_path) {
+    let f = match File::open(file_country_path) {
         Ok(f) => f,
         Err(e) => {
             println!("{:?}", e);
@@ -116,6 +118,70 @@ fn load_edgar() -> Result<()> {
                     };
                     ix_totalco2 += co2_amount;
                     all_entries.push(e);
+                };
+
+                ()
+            },
+            None => ()
+        }
+    }
+
+    // Per Sector Sheet
+    let file_sector_path = "./EDGAR_fossil_CO2_by_sector_and_countr.csv";
+    let f_sct = match File::open(file_sector_path) {
+        Ok(f) => f,
+        Err(e) => {
+            println!("{:?}", e);
+            std::process::exit(2);
+        }
+    };
+    let mut rdr_sct = csv::ReaderBuilder::new()
+        .has_headers(true)
+        .from_reader(f_sct);
+    for result in rdr_sct.records() {
+        let record = match result {
+            Ok(r) => Some(r),
+            Err(_err) => {
+                None
+            }
+        };
+        // we clean up manually here because we dont need the other 48 fields now
+        match record {
+            Some(r) => {
+                let sector = r.get(0);
+                let country = r.get(1);
+                let co2_2019 = r.get(51);
+                let co2_amount = match co2_2019.unwrap().parse::<f32>() {
+                    Ok(i) => i,
+                    Err(_err) => 0.0
+                };
+                if (country != Some("GLOBAL TOTAL")) && 
+                    (country != Some("EU27+UK")) &&
+                    (country != Some("")) {
+                    for p_e in all_entries.clone(){
+                        if p_e.name == country.unwrap() {
+                            let this_percent = (co2_amount * 100.0 / p_e.amount) * p_e.percent / 100.0;
+                            //TODO: generate keys
+                            let mut existing_keys: Vec<String> = [].to_vec();
+                            for k_e in all_entries.clone(){
+                                if (k_e.k.starts_with(&p_e.k)) && (k_e.k != p_e.k) {
+                                    existing_keys.push(k_e.k);
+                                }
+                            }
+                            let sct_key = existing_keys.len() + 1;
+                            let formatted_key = format!("{}_{}", p_e.k, sct_key);
+                            //println!("{} {}-{} -> {} | {} ", formatted_key, country.unwrap(), sector.unwrap(), co2_amount, this_percent);
+                            let e = Entry {
+                                k: formatted_key,
+                                name: sector.unwrap().to_string(),
+                                amount: co2_amount,
+                                percent: this_percent,
+                                childof: p_e.k.to_string(),
+                                source: source.to_string(),
+                            };
+                            all_entries.push(e);
+                        }
+                    }
                 };
 
                 ()
