@@ -170,7 +170,6 @@ fn load_edgar() -> Result<()> {
                             }
                             let sct_key = existing_keys.len() + 1;
                             let formatted_key = format!("{}_{}", p_e.k, sct_key);
-                            //println!("{} {}-{} -> {} | {} ", formatted_key, country.unwrap(), sector.unwrap(), co2_amount, this_percent);
                             let e = Entry {
                                 k: formatted_key,
                                 name: sector.unwrap().to_string(),

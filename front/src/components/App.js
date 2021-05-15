@@ -16,9 +16,6 @@ class App extends React.Component {
     this.doIndentation = this.doIndentation.bind(this);
     this.getObjects = this.getObjects.bind(this);
     this.refresh = this.refresh.bind(this);
-    //inData.sort(function (a, b) {
-    //    return a.amount < b.amount;
-    //});
   }
 
   doIndentation(this_key) {
@@ -45,14 +42,6 @@ class App extends React.Component {
           result.push(full_object);
         }
       }
-      // Show "siblings"
-      var key_parent = key_layers.slice(0, -1).join('_');
-      var selected_key_parent = selected_key_layers.slice(0, -1).join('_');
-      if ((key_layer_nr === selected_key_layer_nr) && !(k === selected_key) && 
-        (key_parent === selected_key_parent)) {
-          var full_object = data_original[key];
-          result.push(full_object);
-      }
       // SHow itself and children
       if (nest_state === "closed") {
         if (k === selected_key) {
@@ -64,6 +53,14 @@ class App extends React.Component {
           var full_object = data_original[key];
           result.push(full_object);
         }
+      }
+      // Show "siblings"
+      var key_parent = key_layers.slice(0, -1).join('_');
+      var selected_key_parent = selected_key_layers.slice(0, -1).join('_');
+      if ((key_layer_nr === selected_key_layer_nr) && !(k === selected_key) && 
+        (key_parent === selected_key_parent)) {
+          var full_object = data_original[key];
+          result.push(full_object);
       }
     })
     return result
