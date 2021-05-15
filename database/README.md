@@ -16,11 +16,12 @@ docker run -it --rm -e POSTGRES_PASSWORD=<some_password> polizai_db:v0.1
 psql -h <your_container_ip> -p 5432 -U postgres # You'll be prompted for the <some_password>
 ```
 TO DO: automate this:
-  - Create the Tables by running the contents of ./schemas inside postgres
-  - Clean any CSVs from empty rows
+  - Create the Tables by running the contents of ./schemas.sql inside postgres (so far copy and paste)
+  - Clean any CSVs from empty rows and NULL cells
   - Load the file(s)
 ```
 \copy co2_countries FROM '/path/to/EDGAR_fossil_CO2_totals_by_country.csv' DELIMITER ',' CSV;
+\copy co2_sectors FROM '/path/to/EDGAR_fossil_CO2_by_sector_and_countr.csv' DELIMITER ',' CSV;
 ```
 
 - Test Data
