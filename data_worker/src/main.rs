@@ -189,17 +189,38 @@ fn load_edgar() -> Result<()> {
         }
     }
 
-    let mut sorted_entries = all_entries.clone();
-    //sorted_entries.sort_by_key(|d| d.clone().name);
-    sorted_entries.sort_by(|a, b| b.amount.partial_cmp(&a.amount).unwrap());
+    let sorted_entries = sort_entries(all_entries.clone());
+    //let mut sorted_entries = all_entries.clone();
+    //sorted_entries.sort_by_key(|d| d.clone().k);
+    //sorted_entries.sort_by(|a, b| b.amount.partial_cmp(&a.amount).unwrap());
     // check the sum of all is the same as the global total
     //println!("{:#x?}", ix_totalco2);
     //println!("{:#x?}", totalco2);
-    // TODO: NEEDED? ::serde_json::to_writer(&File::create("data_json_temp").unwrap(), &sorted_entries)?;
     let json_start = "export const inData = ";
     fs::write("data.js", json_start).expect("Unable to write to file");
     ::serde_json::to_writer(&File::with_options().append(true).open("data.js").unwrap(), &sorted_entries)?;
     Ok(())
+}
+
+fn sort_entries(entries: Vec<Entry>) -> Vec<Entry> {
+    let mut result: Vec<Entry> = [].to_vec();
+    for i in entries.clone() {
+        if i.k == "00" {
+            result.push(i);
+        }
+    }
+    for i in entries.clone() {
+        if i.clone().childof == "00" {
+            result.push(i.clone());
+            for j in entries.clone() {
+                if j.childof == i.clone().k {
+                    result.push(j);
+                }
+            }
+        }
+    }
+    return result
+
 }
 
 // /// Returns the first positional argument sent to this process. If there are no
@@ -210,6 +231,7 @@ fn load_edgar() -> Result<()> {
 //         Some(file_path) => Ok(file_path),
 //     }
 // }
+
 
 fn main() {
     if let Err(err) = load_edgar() {
