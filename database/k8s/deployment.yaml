@@ -35,3 +35,7 @@ spec:
             secretKeyRef:
               name: polizai-db-secret
               key: db-pass
+  volumes:
+    - name: db-init 
+      hostPath:
+        path: ../
