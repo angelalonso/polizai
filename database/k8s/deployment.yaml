@@ -22,7 +22,7 @@ spec:
       volumes:
         - name: db-init 
           hostPath:
-            path: ../
+          - path: ../
         env:
         - name: POSTGRES_DB
           valueFrom:
