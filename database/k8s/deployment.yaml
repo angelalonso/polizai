@@ -20,9 +20,9 @@ spec:
         ports:
         - containerPort: 5432
       volumes:
-        - name: db-init 
-          hostPath:
-          - path: ../
+      - name: db-init 
+        hostPath:
+          path: ../
         env:
         - name: POSTGRES_DB
           valueFrom:
