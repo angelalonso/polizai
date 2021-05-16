@@ -19,6 +19,10 @@ spec:
         image: postgres:12.6-alpine
         ports:
         - containerPort: 5432
+      volumes:
+        - name: db-init 
+          hostPath:
+            path: ../
         env:
         - name: POSTGRES_DB
           valueFrom:
@@ -35,7 +39,3 @@ spec:
             secretKeyRef:
               name: polizai-db-secret
               key: db-pass
-  volumes:
-    - name: db-init 
-      hostPath:
-        path: ../
