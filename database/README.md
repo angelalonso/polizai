@@ -3,7 +3,7 @@
 Database to feed the Polizai app.
 
 ## Steps
-- Build an empty container with a small postgres server
+- Build an empty container with a small postgres server (using v12.6 to have the same version of pg_dump as ubuntu 20.04 provides currently)
 ```
 docker build -f Dockerfile -t polizai_db:v0.1 .
 ```
@@ -21,12 +21,7 @@ docker run -it --rm -e POSTGRES_PASSWORD=<some_password> polizai_db:v0.1
   - This script does the following:
     - Download the datasets, extract CSVs and correct formatting issues on them.
     - Create the Tables on Postgres
-    - Load the CSV files
-```
-\copy co2_countries FROM '/path/to/EDGAR_fossil_CO2_totals_by_country.csv' DELIMITER ',' CSV;
-\copy co2_sectors FROM '/path/to/EDGAR_fossil_CO2_by_sector_and_countr.csv' DELIMITER ',' CSV;
-```
-
-- Export Data, TBD
+    - Load the CSV files into the tables
+    - Dump the data into a file
 - Load image with data, TBD
 - Use it, TBD
