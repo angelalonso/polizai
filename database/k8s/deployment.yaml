@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: polizai-db
+  labels:
+    app: polizai-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: polizai-db
+  template:
+    metadata:
+      labels:
+        app: polizai-db
+    spec:
+      containers:
+      - name: polizai-db
+        image: postgres:12.6-alpine
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        # name must match the volume name below
+          - name: polizai-secret-volume
+            mountPath: /secrets
+        env:
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: polizai-db-secret
+              key: db-name
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: polizai-db-secret
+              key: db-user
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: polizai-db-secret
+              key: db-pass

@@ -16,7 +16,7 @@ docker run -it --rm -e POSTGRES_PASSWORD=<some_password> polizai_db:v0.1
   - adapt it to your needs
 - Add Data
 ```
-./GetData.sh # GetData_JSON.sh is being phased out
+./GetData.sh # JSON_GetData.sh is being phased out
 ```
   - This script does the following:
     - Download the datasets, extract CSVs and correct formatting issues on them.
