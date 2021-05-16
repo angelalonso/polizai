@@ -11,20 +11,22 @@ docker build -f Dockerfile -t polizai_db:v0.1 .
 ```
 docker run -it --rm -e POSTGRES_PASSWORD=<some_password> polizai_db:v0.1
 ```
+- Get your environment ready
+  - copy env.template to .env
+  - adapt it to your needs
 - Add Data
 ```
-psql -h <your_container_ip> -p 5432 -U postgres # You'll be prompted for the <some_password>
+./GetData.sh # GetData_JSON.sh is being phased out
 ```
-TO DO: automate this:
-  - Create the Tables by running the contents of ./schemas.sql inside postgres (so far copy and paste)
-  - Clean any CSVs from empty rows and NULL cells
-  - Load the file(s)
+  - This script does the following:
+    - Download the datasets, extract CSVs and correct formatting issues on them.
+    - Create the Tables on Postgres
+    - Load the CSV files
 ```
 \copy co2_countries FROM '/path/to/EDGAR_fossil_CO2_totals_by_country.csv' DELIMITER ',' CSV;
 \copy co2_sectors FROM '/path/to/EDGAR_fossil_CO2_by_sector_and_countr.csv' DELIMITER ',' CSV;
 ```
 
-- Test Data
-- Export Data
-- Load image with data
-- Use it
+- Export Data, TBD
+- Load image with data, TBD
+- Use it, TBD

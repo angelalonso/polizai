@@ -32,8 +32,9 @@ if [[ ! -f "EDGAR_$SECTOR_SHEET.csv" ]]; then
 else
   echo "$SECTOR_SHEET has already been extracted"
 fi
-
+CWD=$(pwd)
+cd data_worker
 cargo run
 
-mv data.js ../front/src/data/data.js
-
+mv data.js ../../front/src/data/data.js
+cd $CWD

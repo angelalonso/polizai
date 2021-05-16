@@ -25,7 +25,7 @@ fn load_edgar() -> Result<()> {
     let mut all_entries: Vec<Entry> = [].to_vec();
 
     // Per Country Sheet
-    let file_country_path = "./EDGAR_fossil_CO2_totals_by_country.csv";
+    let file_country_path = "../EDGAR_fossil_CO2_totals_by_country.csv";
     let head_f = match File::open(file_country_path) {
         Ok(f) => f,
         Err(e) => {
@@ -127,7 +127,7 @@ fn load_edgar() -> Result<()> {
     }
 
     // Per Sector Sheet
-    let file_sector_path = "./EDGAR_fossil_CO2_by_sector_and_countr.csv";
+    let file_sector_path = "../EDGAR_fossil_CO2_by_sector_and_countr.csv";
     let f_sct = match File::open(file_sector_path) {
         Ok(f) => f,
         Err(e) => {

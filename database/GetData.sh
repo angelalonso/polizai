@@ -37,9 +37,8 @@ fi
 
 # Correct the CSVs
 sed -i -e '/^"","","","",/d' EDGAR_$COUNTRY_SHEET.csv
-sed -i -e 's/"NULL"/""/g' EDGAR_$SECTOR_SHEET.csv
+sed -i -e 's/"NULL"//g' EDGAR_$SECTOR_SHEET.csv
+sed -i -e 's/""//g' EDGAR_$SECTOR_SHEET.csv
 
-# Load the Schemas
-psql -h "$PGRES_HOST" -p "$PGRES_PORT" -U "$PGRES_USER" -f schemas.sql
-
-# Load the data
+# Load the Schemas and Data
+psql -h "$PGRES_HOST" -p "$PGRES_PORT" -U "$PGRES_USER" -f schemas_n_data.sql

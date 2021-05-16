@@ -1,3 +1,4 @@
+DROP TABLE co2_countries;
 CREATE TABLE co2_countries
 (
 country_name varchar,
@@ -53,6 +54,7 @@ country_name varchar,
 "2019" double precision
 );
 
+DROP TABLE co2_sectors;
 CREATE TABLE co2_sectors
 (
 Sector varchar,
@@ -108,3 +110,6 @@ country_name varchar,
 "2018" double precision,
 "2019" double precision
 );
+
+\copy co2_countries FROM './EDGAR_fossil_CO2_totals_by_country.csv' DELIMITER ',' CSV;
+\copy co2_sectors FROM './EDGAR_fossil_CO2_by_sector_and_countr.csv' DELIMITER ',' CSV;
