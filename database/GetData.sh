@@ -45,3 +45,4 @@ psql -h "$PGRES_HOST" -p "$PGRES_PORT" -U "$PGRES_USER" -f schemas_n_data.sql
 
 # Make a dump of the data
 pg_dump -h "$PGRES_HOST" -p "$PGRES_PORT" -U "$PGRES_USER" postgres > full_datadump.sql
+mv full_datadump.sql data/
