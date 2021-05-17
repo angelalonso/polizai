@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-KUBECMD="kk"
+KUBECMD="k3s kubectl"
 
 # set the db data folder full path
 DATAPATH=$(cd ..; pwd)/data
