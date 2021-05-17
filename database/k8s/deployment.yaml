@@ -35,7 +35,10 @@ spec:
             secretKeyRef:
               name: polizai-db-secret
               key: db-pass
+        volumeMounts:
+        - mountPath: /data 
+          name: data-volume
       volumes:
-      - name: db-init 
-        hostPath:
-          path: data
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: polizai-db-pvc-volume 
