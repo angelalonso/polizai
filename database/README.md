@@ -4,6 +4,7 @@ Database to feed the Polizai app.
 
 ## Steps to Deploy
 - Clone this repo into the K8s node
+- Adapt ./k8s/config_n_deploy.sh to your needs (check the kubectl command)
 - run ./k8s/config_n_deploy.sh and be ready to answer some questions (maybe take note of your answers even)
 
 ## Steps to Build
