@@ -15,3 +15,7 @@ DB_PASS=$(echo -n $pass | base64 -)
 sed -i -e "s|\$DB_NAME|$DB_NAME|g" secret.yaml
 sed -i -e "s|\$DB_USER|$DB_USER|g" secret.yaml
 sed -i -e "s|\$DB_PASS|$DB_PASS|g" secret.yaml
+
+
+sed -i -e "s|Owner: postgres|Owner: $DB_USER|g" ../data/full_datadump.sql
+sed -i -e "s|OWNER TO postgres|OWNER TO $DB_USER|g" ../data/full_datadump.sql
