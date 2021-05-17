@@ -7,4 +7,6 @@ It also includes a Script to modify variables within the YAMLs.
 - to avoid saving real paths, passwords and so on on Github.
 
 # TLDR;
-Run ./config_n_deploy.sh
+Run ./config.sh
+Run:
+```for i in $(ls *.yaml); do kubectl apply -f $i; done```, or whatever your kubectl command is
