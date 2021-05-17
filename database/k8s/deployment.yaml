@@ -36,9 +36,9 @@ spec:
               name: polizai-db-secret
               key: db-pass
         volumeMounts:
-        - mountPath: /data 
-          name: data-volume
+        - mountPath: /docker-entrypoint-initdb.d
+          name: entrypoint-initdb
       volumes:
-      - name: data-volume
+      - name: entrypoint-initdb
         persistentVolumeClaim:
           claimName: polizai-db-pvc-volume 
