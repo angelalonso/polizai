@@ -23,6 +23,10 @@ pub fn rocket() -> (Rocket, Option<DbConn>) {
             }
         })).mount("/api/auth", routes![login, signup])
         .mount(
+            "/api/co2-countries",
+            routes![find_all],
+        )
+        .mount(
             "/api/address-book",
             routes![find_all, find_by_id, query, insert, update, delete],
         );

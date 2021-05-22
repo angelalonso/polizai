@@ -37,12 +37,19 @@ fi
 
 # Correct the CSVs
 sed -i -e '/^"","","","",/d' EDGAR_$COUNTRY_SHEET.csv
+tail -n +2 EDGAR_$COUNTRY_SHEET.csv > EDGAR_$COUNTRY_SHEET.csv.tmp
+cat EDGAR_$COUNTRY_SHEET.csv.tmp > EDGAR_$COUNTRY_SHEET.csv
+rm EDGAR_$COUNTRY_SHEET.csv.tmp
+
 sed -i -e 's/"NULL"//g' EDGAR_$SECTOR_SHEET.csv
 sed -i -e 's/""//g' EDGAR_$SECTOR_SHEET.csv
+tail -n +2 EDGAR_$SECTOR_SHEET.csv > EDGAR_$SECTOR_SHEET.csv.tmp
+cat EDGAR_$SECTOR_SHEET.csv.tmp > EDGAR_$SECTOR_SHEET.csv
+rm EDGAR_$SECTOR_SHEET.csv.tmp
 
 # Load the Schemas and Data
 psql -h "$PGRES_HOST" -p "$PGRES_PORT" -U "$PGRES_USER" -f schemas_n_data.sql
 
-# Make a dump of the data
+## Make a dump of the data
 pg_dump -h "$PGRES_HOST" -p "$PGRES_PORT" -U "$PGRES_USER" postgres > full_datadump.sql
 mv full_datadump.sql data/
