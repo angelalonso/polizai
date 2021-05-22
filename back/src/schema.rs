@@ -7,10 +7,10 @@ table! {
 }
 
 table! {
-    countries_co2 (id) {
-        id -> Int4,
+    co2_countries (country_id) {
+        country_id -> Int4,
         country_name -> Varchar,
-        amount_2019 -> Float,
+        amount_2019 -> Double,
     }
 }
 

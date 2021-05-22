@@ -1,5 +1,6 @@
 use api::account_controller::*;
 use api::address_book_controller::*;
+use api::co2_countries_controller::*;
 use diesel::pg::PgConnection;
 use rocket::fairing::AdHoc;
 use rocket::Rocket;
@@ -24,7 +25,10 @@ pub fn rocket() -> (Rocket, Option<DbConn>) {
         })).mount("/api/auth", routes![login, signup])
         .mount(
             "/api/co2-countries",
-            routes![find_all],
+            routes![
+            co2_countries_find_all, 
+            co2_countries_get_main, 
+            co2_countries_get_countries],
         )
         .mount(
             "/api/address-book",
