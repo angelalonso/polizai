@@ -18,25 +18,6 @@ pub struct ApiCountry {
 }
 
 impl Country {
-    // TO BE DEPRECATED---
-    pub fn find_all(conn: &PgConnection) -> Vec<Country> {
-        co2_countries.order(country_id.asc()).load::<Country>(conn).unwrap()
-    }
-
-    pub fn old_find_main(conn: &PgConnection) -> Vec<Country> {
-        co2_countries
-            .filter(co2_countries::country_name.like("GLOBAL TOTAL")).
-            load::<Country>(conn).unwrap()
-    }
-
-    pub fn old_find_countries(conn: &PgConnection) -> Vec<Country> {
-        co2_countries
-            .filter(co2_countries::country_name.not_like("GLOBAL TOTAL"))
-            .filter(co2_countries::country_name.not_like("EU27+UK"))
-                .load::<Country>(conn).unwrap()
-    }
-    // ---UNTIL HERE 
-
     pub fn find_main(conn: &PgConnection) -> Vec<ApiCountry> {
         let mut result: Vec<ApiCountry> = [].to_vec();
         let db = co2_countries
@@ -59,6 +40,7 @@ impl Country {
         let db = co2_countries
             .filter(co2_countries::country_name.not_like("GLOBAL TOTAL"))
             .filter(co2_countries::country_name.not_like("EU27+UK"))
+            .order(amount_2019.desc())
                 .load::<Country>(conn).unwrap();
         for d in db {
             let p = d.amount_2019 * 100.0 / db_total[0].amount_2019;

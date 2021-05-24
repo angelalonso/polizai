@@ -26,7 +26,6 @@ pub fn rocket() -> (Rocket, Option<DbConn>) {
         .mount(
             "/api/co2-countries",
             routes![
-            co2_countries_find_all, 
             co2_countries_get_main, 
             co2_countries_get_countries],
         )
