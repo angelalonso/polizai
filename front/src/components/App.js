@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import Header from "./Header";
+import '../style/App.css';
 import axios from 'axios';
 import List from './List';
 import withListLoading from './withListLoading';
@@ -12,9 +14,8 @@ function App() {
 
   useEffect(() => {
     setAppState({ loading: true });
-    //TODO: this is just a test
     const apiUrl = `http://0.0.0.0:8000/api/co2-countries/get_main`;
-    const apiJWTToken = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    const apiJWTToken = "xxx"
     const apiConfig = {
        headers: {
           Authorization: "Bearer " + apiJWTToken
@@ -26,12 +27,14 @@ function App() {
     }).catch(error => console.log(error));
   }, [setAppState]);
   return (
-    <div className='App'>
-      <div className='container'>
-        <h1>Per Country:</h1>
+    <div style={{ display: "block", width: "100%", position:"absolute" }}> 
+      <div> <Header name="testname" setName="testhandlename" />
       </div>
-      <div className='repo-container'>
+      <div style={{ display: "block", width: "100%", position: "relative", top: "3em" }}>
+      <ul key="main_ul" style={{ display: "block", width: "100%", marginLeft: -30, marginRight: 10, width: '100%' }}>
         <ListLoading isLoading={appState.loading} repos={appState.repos} />
+
+      </ul>
       </div>
     </div>
   );

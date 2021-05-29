@@ -12,8 +12,11 @@ export default ({ name, setName }) => {
     <>
       <AppBar color="secondary">
         <Toolbar>
+          <Typography variant="h4">
+            Zero Artificial Intelligence     |
+          </Typography>
           <Typography variant="h6">
-            Relative CO2 Footprints
+             | CO² Footprints
           </Typography>
         </Toolbar>
       </AppBar>
