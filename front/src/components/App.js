@@ -39,7 +39,9 @@ class App extends React.Component {
 
   // Load data
   componentDidMount() {
-    this.setState({ loading: true });
+    this.setState({ loading: true});
+    // TODO: understand why this doesnt work otherwise
+    const {REACT_APP_JWT_TOKEN} = process.env;
     const apiURL = process.env.REACT_APP_API_URL;
     const apiSignup = apiURL.concat(`/api/auth/signup`);
     const apiLogin = apiURL.concat(`/api/auth/login`);
@@ -47,35 +49,21 @@ class App extends React.Component {
     const apiGetCountries = apiURL.concat(`/api/co2/get_countries`);
     const apiGetSectors = apiURL.concat(`/api/co2/get_sectors`);
     var full_list = [];
-    axios({
-      method: 'post',
-      url: apiSignup,
-      data: {
-        username: 'App',
-        email: 'app@poliz.ai',
-        password: 'test1234'
-      }
-    })
-   .then((resp_signup) => {
-      console.log("NEW SIGNUP");
-      return axios({method: 'post', url: apiLogin, data: {username_or_email: 'App',password: 'test1234'}});
-    }).then(resp_login => {
-      console.log("NEW TOKEN");
-      this.setState({
-        token: resp_login.data.data.token
-      });
-      const apiConfig = {
-         headers: {
-            Authorization: "Bearer " + this.state.token
-         }
-      };
-      return axios.get(apiGetMain, apiConfig)
-    }).then((response) => {
+
+    const apiConfig = {
+       headers: {
+          Authorization: "Bearer " + REACT_APP_JWT_TOKEN
+       }
+    };
+    // Token? test it
+    axios.get(apiGetMain, apiConfig)
+    .then((response) => {
       full_list.push(...this.add_ix_n_percent(response.data.data, ""));
       this.setState({ 
         loading: false, 
         current_ix_open: "000",
-        data_sample: full_list 
+        data_sample: full_list, 
+        token: REACT_APP_JWT_TOKEN
       });
       const apiConfig = {
          headers: {
@@ -103,7 +91,69 @@ class App extends React.Component {
           current_ix_open: "000",
           data_sample: full_list,
           data_shown: this.getObjectsClassic() });
-    }).catch(error => console.log(error));
+    }).catch(error => {
+    // Token Failed? get another one
+      axios({
+        method: 'post',
+        url: apiSignup,
+        data: {
+          username: 'App',
+          email: 'app@poliz.ai',
+          password: 'test1234'
+        }
+      })
+     .then((resp_signup) => {
+        console.log("NEW SIGNUP");
+        return axios({method: 'post', url: apiLogin, data: {username_or_email: 'App',password: 'test1234'}});
+      }).then(resp_login => {
+        console.log("NEW TOKEN");
+        this.setState({
+          token: resp_login.data.data.token
+        });
+        const apiConfig = {
+           headers: {
+              Authorization: "Bearer " + this.state.token
+           }
+        };
+        return axios.get(apiGetMain, apiConfig)
+      }).then((response) => {
+        full_list.push(...this.add_ix_n_percent(response.data.data, ""));
+        this.setState({ 
+          loading: false, 
+          current_ix_open: "000",
+          data_sample: full_list 
+        });
+        const apiConfig = {
+           headers: {
+              Authorization: "Bearer " + this.state.token
+           }
+        };
+        return axios.get(apiGetCountries, apiConfig);
+      }).then(response_b => {
+        full_list.push(...this.add_ix_n_percent(response_b.data.data, "000"));
+        this.setState({ 
+          loading: false, 
+          current_ix_open: "000",
+          data_sample: full_list 
+        });
+        const apiConfig = {
+           headers: {
+              Authorization: "Bearer " + this.state.token
+           }
+        };
+        return axios.get(apiGetSectors, apiConfig);
+      }).then(response_c => {
+          full_list = this.add_ix_n_percent(response_c.data.data, this.state.data_sample);
+          this.setState({ 
+            loading: false, 
+            current_ix_open: "000",
+            data_sample: full_list,
+            data_shown: this.getObjectsClassic() });
+      }).catch(error => console.log(error));
+    });
+    
+    
+
   };
 
   // Prepare Data to Show
