@@ -1,6 +1,6 @@
 use api::account_controller::*;
 use api::address_book_controller::*;
-use api::co2_countries_controller::*;
+use api::co2_controller::*;
 use diesel::pg::PgConnection;
 use rocket::fairing::AdHoc;
 use rocket::Rocket;
@@ -17,7 +17,7 @@ pub fn rocket() -> (Rocket, Option<DbConn>) {
     let cors = CorsOptions::default()
         .allowed_origins(AllowedOrigins::all())
         .allowed_methods(
-            vec![Method::Get]
+            vec![Method::Get, Method::Post]
                 .into_iter()
                 .map(From::from)
                 .collect(),
@@ -37,10 +37,12 @@ pub fn rocket() -> (Rocket, Option<DbConn>) {
             }
         })).mount("/api/auth", routes![login, signup])
         .mount(
-            "/api/co2-countries",
+            "/api/co2",
             routes![
-            co2_countries_get_main, 
-            co2_countries_get_countries],
+            co2_get_main 
+            ,co2_get_countries
+            ,co2_get_sectors
+            ],
         )
         .mount(
             "/api/address-book",

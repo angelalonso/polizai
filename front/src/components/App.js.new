@@ -1,0 +1,82 @@
+import React, { useEffect, useState } from 'react';
+import Header from "./Header";
+import '../style/App.css';
+import axios from 'axios';
+import NestedContent from './NestedContent';
+import List from './List';
+import withListLoading from './withListLoading';
+
+function App() {
+  const ListLoading = withListLoading(List);
+  const [appState, setAppState] = useState({
+    loading: false,
+    response: null,
+    current_ix_open: null,
+  });
+
+  Number.prototype.pad = function(size) {
+    var s = String(this);
+    while (s.length < (size || 2)) {s = "0" + s;}
+    return s;
+  }
+
+  function add_ix(list, parent_value) {
+    let result = [];
+    let ctr = 0;
+    list.forEach(function (item) {
+      if (parent_value != "") {
+        item.ix = parent_value.concat("_").concat((ctr).pad(3));
+      } else {
+        item.ix = parent_value.concat((ctr).pad(3));
+      };
+      result.push(item);
+      ctr += 1;
+    });
+    return result;
+  };
+
+  useEffect(() => {
+    setAppState({ loading: true });
+    const apiGetMain = `http://0.0.0.0:8000/api/co2-countries/get_main`;
+    const apiGetCountries = `http://0.0.0.0:8000/api/co2-countries/get_countries`;
+    const apiJWTToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MjI0NjQ5MTMsImV4cCI6MTYyMzA2OTcxMywidXNlciI6InRlc3QiLCJsb2dpbl9zZXNzaW9uIjoiNTU0NjM5MGZjN2NiNGI4Njg0ODJiMWVmMzZiODlkOTQifQ.1fdDOkK0WFqJ0TDpjUE6PsXRQoFuC0hbxcYad9VymzY"
+    const apiConfig = {
+       headers: {
+          Authorization: "Bearer " + apiJWTToken
+       }
+    };
+    var full_list = [];
+    axios.get(apiGetMain, apiConfig)
+      .then((response) => {
+        full_list.push(...add_ix(response.data.data, ""));
+        setAppState({ 
+          loading: false, 
+          current_ix_open: "000",
+          response: full_list });
+        return axios.get(apiGetCountries, apiConfig);
+    }).then(response_b => {
+        full_list.push(...add_ix(response_b.data.data, "000"));
+        setAppState({ 
+          loading: false, 
+          current_ix_open: "000",
+          response: full_list });
+    }).catch(error => console.log(error));
+  }, [setAppState]);
+
+  return (
+    <div style={{ display: "block", width: "100%", position:"absolute" }}> 
+      <div> <Header name="testname" setName="testhandlename" />
+      </div>
+      <div style={{ display: "block", width: "100%", position: "relative", top: "3em" }}>
+      <ul key="main_ul" style={{ display: "block", width: "100%", marginLeft: -75, width: '102%' }}>
+        <NestedContent />
+    {/* 
+        <ListLoading isLoading={appState.loading} currentIx={appState.current_ix_open} response={appState.response} />
+    */}
+      </ul>
+      </div>
+    </div>
+  );
+}
+
+export default App;

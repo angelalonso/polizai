@@ -41,8 +41,9 @@ tail -n +2 EDGAR_$COUNTRY_SHEET.csv > EDGAR_$COUNTRY_SHEET.csv.tmp
 cat EDGAR_$COUNTRY_SHEET.csv.tmp > EDGAR_$COUNTRY_SHEET.csv
 rm EDGAR_$COUNTRY_SHEET.csv.tmp
 
-sed -i -e 's/"NULL"//g' EDGAR_$SECTOR_SHEET.csv
-sed -i -e 's/""//g' EDGAR_$SECTOR_SHEET.csv
+cp EDGAR_$SECTOR_SHEET.csv EDGAR_$SECTOR_SHEET.csv.orig
+sed -i -e 's/"NULL"/"0.0"/g' EDGAR_$SECTOR_SHEET.csv
+sed -i -e 's/,,/,"0.0",/g' EDGAR_$SECTOR_SHEET.csv
 tail -n +2 EDGAR_$SECTOR_SHEET.csv > EDGAR_$SECTOR_SHEET.csv.tmp
 cat EDGAR_$SECTOR_SHEET.csv.tmp > EDGAR_$SECTOR_SHEET.csv
 rm EDGAR_$SECTOR_SHEET.csv.tmp
