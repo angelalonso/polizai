@@ -21,5 +21,7 @@ COPY --from=builder \
 
 RUN apt-get update && apt-get install -y libpq-dev
 
+EXPOSE 8000
+
 WORKDIR /root
 CMD /usr/local/bin/polizai_back
