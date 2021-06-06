@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: polizai-back
-        image: angelalonso/polizai-back:v0.1
+        image: angelalonso/polizai_back:v0.1
         env:
         - name: ROCKET_DATABASES
           valueFrom:
