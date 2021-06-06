@@ -1,21 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: polizai-co2
+  name: polizai-front
   labels:
-    app: polizai-co2
+    app: polizai-front
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: polizai-co2
+      app: polizai-front
   template:
     metadata:
       labels:
-        app: polizai-co2
+        app: polizai-front
     spec:
       containers:
-      - name: polizai-co2
-        image: angelalonso/polizai-co2:v0.1
+      - name: polizai-front
+        image: angelalonso/polizai_front:v0.1
         ports:
         - containerPort: 80
+        env:
+        - name: REACT_APP_API_URL
+          value: "http://polizai-back:8000"
