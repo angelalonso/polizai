@@ -17,7 +17,7 @@ sed -i -e "s|\$DB_USER|$DB_USER|g" secret.yaml
 sed -i -e "s|\$DB_PASS|$DB_PASS|g" secret.yaml
 # We need this for the API too
 back_dbs_string="'{postgres_database={url=\"postgres://$user:$pass@polizai-db:5432/$dbname\"}}'"
-BACK_DBS=$(echo -n $back_dbs_string | base64 -)
+BACK_DBS=$(echo -n $back_dbs_string | base64 -w 0)
 sed -i -e "s|\$BACK_DBS|$BACK_DBS|g" ../../back/k8s/secret.yaml
 
 
