@@ -4,7 +4,7 @@ metadata:
   name: polizai-back
 spec:
   selector:
-    app: polizaiback-
+    app: polizai-back
   ports:
     - protocol: TCP
       port: 8000
