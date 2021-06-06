@@ -7,13 +7,17 @@ sed -i -e "s|\$DATAPATH|$DATAPATH|g" pv.yaml
 # ask the user for the values of the secrets
 read -r -p "What will the DB USER be? " user
 read -r -s -p "What will the DB PASSWORD be? " pass
+dbname="public"
 
-DB_NAME=$(echo -n "public" | base64 -)
+DB_NAME=$(echo -n $dbname | base64 -)
 DB_USER=$(echo -n $user | base64 -)
 DB_PASS=$(echo -n $pass | base64 -)
 sed -i -e "s|\$DB_NAME|$DB_NAME|g" secret.yaml
 sed -i -e "s|\$DB_USER|$DB_USER|g" secret.yaml
 sed -i -e "s|\$DB_PASS|$DB_PASS|g" secret.yaml
+# We need this for the API too
+BACK_DBS="'{postgres_database={url=\"postgres://$user:$pass@polizai-db:5432/$dbname\"}}'"
+sed -i -e "s|\$BACK_DBS|$BACK_DBS|g" ../../back/k8s/secret.yaml
 
 
 # Correct the dump: MODIFY THIS IF YOU CREATED THE DUMP INITIALLY WITH OTHER USER NAME!!
