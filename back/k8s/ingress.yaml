@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: polizai-back
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "traefik"
 spec:
   rules:
     - host: api.poliz.ai
@@ -15,4 +15,4 @@ spec:
             service:
               name: polizai-back
               port:
-                number: 80
+                number: 8000
