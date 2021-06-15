@@ -18,7 +18,17 @@ spec:
       - name: polizai-front
         image: angelalonso/polizai_front:v0.1
         ports:
-        - containerPort: 80
+        - containerPort: 3000
         env:
         - name: REACT_APP_API_URL
           value: "https://api.poliz.ai"
+        readinessProbe:
+          tcpSocket:
+            port: 3000
+          initialDelaySeconds: 40
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 3000
+          initialDelaySeconds: 60
+          periodSeconds: 20
