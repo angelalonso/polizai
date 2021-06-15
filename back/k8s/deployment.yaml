@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: polizai-back
+  labels:
+    app: polizai-back
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: polizai-back
+  template:
+    metadata:
+      labels:
+        app: polizai-back
+    spec:
+      containers:
+      - name: polizai-back
+        image: angelalonso/polizai_back:v0.1
+        env:
+        - name: ROCKET_DATABASES
+          valueFrom:
+            secretKeyRef:
+              name: polizai-back-secret
+              key: databases
+        ports:
+        - containerPort: 8000
+        resources:
+          limits:
+            cpu: 200m
+          requests:
+            cpu: 100m
+        readinessProbe:
+          tcpSocket:
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 8000
+          initialDelaySeconds: 15
+          periodSeconds: 20

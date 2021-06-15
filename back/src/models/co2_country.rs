@@ -12,7 +12,7 @@ pub struct Country {
 
 #[derive(Queryable, Serialize, Deserialize, Clone, Debug)]
 pub struct ApiCountry {
-    pub country_name: String,
+    pub name: String,
     pub amount_2019: f64,
     pub percent_2019: f64,
 }
@@ -25,7 +25,7 @@ impl Country {
             load::<Country>(conn).unwrap();
         for d in db {
             let ad = ApiCountry {
-                country_name: d.country_name,
+                name: d.country_name,
                 amount_2019: d.amount_2019,
                 percent_2019: 100.0,
             };
@@ -45,7 +45,7 @@ impl Country {
         for d in db {
             let p = d.amount_2019 * 100.0 / db_total[0].amount_2019;
             let ad = ApiCountry {
-                country_name: d.country_name,
+                name: d.country_name,
                 amount_2019: d.amount_2019,
                 percent_2019: p,
             };

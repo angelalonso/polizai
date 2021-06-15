@@ -3,6 +3,7 @@
 
 #[macro_use]
 extern crate rocket;
+extern crate rocket_cors;
 #[macro_use]
 extern crate rocket_contrib;
 #[macro_use]

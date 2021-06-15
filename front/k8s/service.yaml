@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: polizai-co2
+  name: polizai-front
 spec:
   selector:
-    app: polizai-co2
+    app: polizai-front
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 3000

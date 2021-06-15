@@ -5,18 +5,6 @@ import App from './components/App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
-class Doc extends React.Component{
-  componentDidMount(){
-    document.title = "CO2 Comparison"
-  }
-
-  render(){
-    return(
-      <b></b>
-    )
-  }
-}
-
 ReactDOM.render(
   <React.StrictMode>
     <App />

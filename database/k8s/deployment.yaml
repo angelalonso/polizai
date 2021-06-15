@@ -19,6 +19,16 @@ spec:
         image: postgres:12.6-alpine
         ports:
         - containerPort: 5432
+        readinessProbe:
+          tcpSocket:
+            port: 5432
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 5432
+          initialDelaySeconds: 15
+          periodSeconds: 20
         env:
         - name: POSTGRES_DB
           valueFrom:
