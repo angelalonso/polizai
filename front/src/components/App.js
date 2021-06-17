@@ -42,12 +42,12 @@ class App extends React.Component {
     this.setState({ loading: true});
     // TODO: understand why this doesnt work otherwise
     const {REACT_APP_JWT_TOKEN} = process.env;
-    const apiURL = process.env.REACT_APP_API_URL;
-    const apiSignup = apiURL.concat(`/api/auth/signup`);
-    const apiLogin = apiURL.concat(`/api/auth/login`);
-    const apiGetMain = apiURL.concat(`/api/co2/get_main`);
-    const apiGetCountries = apiURL.concat(`/api/co2/get_countries`);
-    const apiGetSectors = apiURL.concat(`/api/co2/get_sectors`);
+    const {REACT_APP_API_URL} = process.env;
+    const apiSignup = REACT_APP_API_URL.concat(`/api/auth/signup`);
+    const apiLogin = REACT_APP_API_URL.concat(`/api/auth/login`);
+    const apiGetMain = REACT_APP_API_URL.concat(`/api/co2/get_main`);
+    const apiGetCountries = REACT_APP_API_URL.concat(`/api/co2/get_countries`);
+    const apiGetSectors = REACT_APP_API_URL.concat(`/api/co2/get_sectors`);
     var full_list = [];
 
     const apiConfig = {

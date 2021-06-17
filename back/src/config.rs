@@ -1,5 +1,4 @@
 use api::account_controller::*;
-use api::address_book_controller::*;
 use api::co2_controller::*;
 use diesel::pg::PgConnection;
 use rocket::fairing::AdHoc;
