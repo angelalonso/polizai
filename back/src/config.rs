@@ -43,10 +43,6 @@ pub fn rocket() -> (Rocket, Option<DbConn>) {
             ,co2_get_countries
             ,co2_get_sectors
             ],
-        )
-        .mount(
-            "/api/address-book",
-            routes![find_all, find_by_id, query, insert, update, delete],
         );
 
     let conn = if cfg!(test) {

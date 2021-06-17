@@ -22,13 +22,21 @@ spec:
         env:
         - name: REACT_APP_API_URL
           value: "https://api.poliz.ai"
+        - name: REACT_APP_JWT_TOKEN
+          value: ""
         readinessProbe:
           tcpSocket:
             port: 3000
           initialDelaySeconds: 40
           periodSeconds: 10
+          failureThreshold: 2
+          successThreshold: 1
+          timeoutSeconds: 2
         livenessProbe:
           tcpSocket:
             port: 3000
           initialDelaySeconds: 60
           periodSeconds: 20
+          failureThreshold: 2
+          successThreshold: 1
+          timeoutSeconds: 2

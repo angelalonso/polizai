@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: polizai-back
-        image: angelalonso/polizai_back:v0.1
+        image: angelalonso/polizai_back:v0.2
         env:
         - name: ROCKET_DATABASES
           valueFrom:
@@ -33,10 +33,10 @@ spec:
         readinessProbe:
           tcpSocket:
             port: 8000
-          initialDelaySeconds: 5
-          periodSeconds: 10
+          initialDelaySeconds: 15
+          periodSeconds: 15
         livenessProbe:
           tcpSocket:
             port: 8000
-          initialDelaySeconds: 15
-          periodSeconds: 20
+          initialDelaySeconds: 25
+          periodSeconds: 25

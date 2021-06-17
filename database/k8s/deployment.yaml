@@ -22,12 +22,12 @@ spec:
         readinessProbe:
           tcpSocket:
             port: 5432
-          initialDelaySeconds: 5
+          initialDelaySeconds: 30
           periodSeconds: 10
         livenessProbe:
           tcpSocket:
             port: 5432
-          initialDelaySeconds: 15
+          initialDelaySeconds: 45
           periodSeconds: 20
         env:
         - name: POSTGRES_DB
@@ -52,3 +52,4 @@ spec:
       - name: entrypoint-initdb
         persistentVolumeClaim:
           claimName: polizai-db-pvc-volume 
+
