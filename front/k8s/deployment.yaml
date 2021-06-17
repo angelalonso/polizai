@@ -23,7 +23,7 @@ spec:
         - name: REACT_APP_API_URL
           value: "https://api.poliz.ai"
         - name: REACT_APP_JWT_TOKEN
-          value: ""
+          value: $REACT_APP_JWT_TOKEN
         readinessProbe:
           tcpSocket:
             port: 3000
