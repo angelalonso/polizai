@@ -101,7 +101,24 @@ db() {
 }
 
 front() {
-  $KK apply -f front/k8s/deployment.yaml
+  FRONT_DIR="front/k8s"
+
+  sed -i -e "s|API_URL=.*|API_URL=$api_url|g" $ENV
+  sed -i -e "s|API_USER=.*|API_USER=$api_user|g" $ENV
+  sed -i -e "s|API_EMAIL=.*|API_EMAIL=$api_email|g" $ENV
+  sed -i -e "s|API_PASS=.*|API_PASS=$api_pass|g" $ENV
+
+  curl --header "Content-Type: application/json" --request POST --data '{"username": "${API_USER}", "email": "${API_EMAIL}", "password": "${API_PASS}"}' "${URL}"/api/auth/signup
+  TOKEN=$(curl --header "Content-Type: application/json" --request POST --data '{"username_or_email": "${API_EMAIL}", "password": "${API_PASS}"}' https://api.poliz.ai/api/auth/login)
+  sed -i -e "s|API_TOKEN=.*|API_TOKEN=$TOKEN|g" $ENV
+  source $ENV
+
+  sed -i -e "s|\$REACT_APP_API_URL|$API_URL|g" ${FRONT_DIR}/deployment.yaml
+  sed -i -e "s|\$REACT_APP_JWT_TOKEN|$API_TOKEN|g" ${FRONT_DIR}/deployment.yaml
+  sed -i -e "s|\$REACT_APP_API_USER|$API_USER|g" ${FRONT_DIR}/deployment.yaml
+  sed -i -e "s|\$REACT_APP_API_EMAIL|$API_EMAIL|g" ${FRONT_DIR}/deployment.yaml
+  sed -i -e "s|\$REACT_APP_API_PASS|$API_PASS|g" ${FRONT_DIR}/deployment.yaml
+  $KK apply -f ${FRONT_DIR}/deployment.yaml
 }
 
 update
