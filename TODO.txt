@@ -13,6 +13,7 @@
 # Database
 - Sidecar DB pod to make seds to full_datadump
 - Add more data
+- DB backups
 
 # Back
 - Avoid login from any user
