@@ -43,6 +43,9 @@ class App extends React.Component {
     // TODO: understand why this doesnt work otherwise
     const {REACT_APP_JWT_TOKEN} = process.env;
     const {REACT_APP_API_URL} = process.env;
+    const {REACT_APP_API_USER} = process.env;
+    const {REACT_APP_API_EMAIL} = process.env;
+    const {REACT_APP_API_PASS} = process.env;
     const apiSignup = REACT_APP_API_URL.concat(`/api/auth/signup`);
     const apiLogin = REACT_APP_API_URL.concat(`/api/auth/login`);
     const apiGetMain = REACT_APP_API_URL.concat(`/api/co2/get_main`);
@@ -56,6 +59,9 @@ class App extends React.Component {
        }
     };
     // Token? test it
+    console.log(" -- v0.2.01 -- ");
+    //console.log("FIRST TEST");
+    //console.log(apiConfig);
     axios.get(apiGetMain, apiConfig)
     .then((response) => {
       full_list.push(...this.add_ix_n_percent(response.data.data, ""));
@@ -72,6 +78,7 @@ class App extends React.Component {
       };
       return axios.get(apiGetCountries, apiConfig);
     }).then(response_b => {
+      //console.log("SECOND TEST");
       full_list.push(...this.add_ix_n_percent(response_b.data.data, "000"));
       this.setState({ 
         loading: false, 
@@ -85,6 +92,7 @@ class App extends React.Component {
       };
       return axios.get(apiGetSectors, apiConfig);
     }).then(response_c => {
+        //console.log("THIRD TEST");
         full_list = this.add_ix_n_percent(response_c.data.data, this.state.data_sample);
         this.setState({ 
           loading: false, 
@@ -97,16 +105,16 @@ class App extends React.Component {
         method: 'post',
         url: apiSignup,
         data: {
-          username: 'App',
-          email: 'app@poliz.ai',
-          password: 'test1234'
+          username: REACT_APP_API_USER,
+          email: REACT_APP_API_EMAIL,
+          password: REACT_APP_API_PASS
         }
       })
      .then((resp_signup) => {
-        console.log("NEW SIGNUP");
-        return axios({method: 'post', url: apiLogin, data: {username_or_email: 'App',password: 'test1234'}});
+        //console.log("Signing up again...");
+        return axios({method: 'post', url: apiLogin, data: {username_or_email: REACT_APP_API_USER,password: REACT_APP_API_PASS}});
       }).then(resp_login => {
-        console.log("NEW TOKEN");
+        //console.log("Getting a New Token...");
         this.setState({
           token: resp_login.data.data.token
         });

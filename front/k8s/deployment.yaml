@@ -16,14 +16,20 @@ spec:
     spec:
       containers:
       - name: polizai-front
-        image: angelalonso/polizai_front:v0.1
+        image: angelalonso/polizai_front:v0.2.03
         ports:
         - containerPort: 3000
         env:
         - name: REACT_APP_API_URL
-          value: "https://api.poliz.ai"
+          value: $REACT_APP_API_URL
         - name: REACT_APP_JWT_TOKEN
           value: $REACT_APP_JWT_TOKEN
+        - name: REACT_APP_API_USER
+          value: $REACT_APP_API_USER
+        - name: REACT_APP_API_EMAIL
+          value: $REACT_APP_API_EMAIL
+        - name: REACT_APP_API_PASS
+          value: $REACT_APP_API_PASS
         readinessProbe:
           tcpSocket:
             port: 3000
