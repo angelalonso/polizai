@@ -1,0 +1,19 @@
+# General
+- Central script to deploy all/one by one
+- Add proper health/check
+
+# Front
+- Move credentials to secrets.yaml
+- Add search
+- "my impact" site: 
+  - Choose sector where you reduce, how much you reduce, 
+  - Show current percentage of improvement and some extra ideas
+- Loading...
+
+# Database
+- Sidecar DB pod to make seds to full_datadump
+- Add more data
+
+# Back
+- Avoid login from any user
+

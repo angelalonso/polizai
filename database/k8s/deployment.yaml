@@ -4,6 +4,7 @@ metadata:
   name: polizai-db
   labels:
     app: polizai-db
+    version: postgres12.6-alpine
 spec:
   replicas: 1
   selector:

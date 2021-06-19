@@ -4,6 +4,7 @@ metadata:
   name: polizai-front
   labels:
     app: polizai-front
+    version: v0.2.03
 spec:
   replicas: 2
   selector:
