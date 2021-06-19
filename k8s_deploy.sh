@@ -102,16 +102,22 @@ db() {
 
 front() {
   FRONT_DIR="front/k8s"
-
-  sed -i -e "s|API_URL=.*|API_URL=$api_url|g" $ENV
-  sed -i -e "s|API_USER=.*|API_USER=$api_user|g" $ENV
-  sed -i -e "s|API_EMAIL=.*|API_EMAIL=$api_email|g" $ENV
-  sed -i -e "s|API_PASS=.*|API_PASS=$api_pass|g" $ENV
-
-  curl --header "Content-Type: application/json" --request POST --data '{"username": "${API_USER}", "email": "${API_EMAIL}", "password": "${API_PASS}"}' "${URL}"/api/auth/signup
-  TOKEN=$(curl --header "Content-Type: application/json" --request POST --data '{"username_or_email": "${API_EMAIL}", "password": "${API_PASS}"}' https://api.poliz.ai/api/auth/login)
-  sed -i -e "s|API_TOKEN=.*|API_TOKEN=$TOKEN|g" $ENV
   source $ENV
+
+  if [[ $API_TOKEN != "" ]]; then
+    read -r -p "Do you want to get a new TOKEN? [y/n]" change_token 
+    if [[ $change_token == "y" ]]; then
+      curl --header "Content-Type: application/json" --request POST --data '{"username": "${API_USER}", "email": "${API_EMAIL}", "password": "${API_PASS}"}' "${API_URL}"/api/auth/signup
+      TOKEN=$(curl --header "Content-Type: application/json" --request POST --data '{"username_or_email": "${API_EMAIL}", "password": "${API_PASS}"}' "${API_URL}"/api/auth/login | jq .data.token)
+      sed -i -e "s|API_TOKEN=.*|API_TOKEN=$TOKEN|g" $ENV
+      source $ENV
+    fi
+  else
+    curl --header "Content-Type: application/json" --request POST --data '{"username": "${API_USER}", "email": "${API_EMAIL}", "password": "${API_PASS}"}' "${API_URL}"/api/auth/signup
+    TOKEN=$(curl --header "Content-Type: application/json" --request POST --data '{"username_or_email": "${API_EMAIL}", "password": "${API_PASS}"}' "${API_URL}"/api/auth/login | jq .data.token)
+    sed -i -e "s|API_TOKEN=.*|API_TOKEN=$TOKEN|g" $ENV
+    source $ENV
+  fi
 
   sed -i -e "s|\$REACT_APP_API_URL|$API_URL|g" ${FRONT_DIR}/deployment.yaml
   sed -i -e "s|\$REACT_APP_JWT_TOKEN|$API_TOKEN|g" ${FRONT_DIR}/deployment.yaml
