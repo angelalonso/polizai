@@ -11,6 +11,8 @@ ask_for_vars() {
   # load current values
   source $ENV
 
+  #### DATABASE VARS
+
   # ask the user for the values of the secrets, using current as default
   if [[ $DB_HOST == "" ]]; then 
     DB_HOST="polizai-db:5432"
@@ -35,12 +37,43 @@ ask_for_vars() {
     echo 
   done
 
+  #### API VARS
+
+  if [[ $API_URL == "" ]]; then 
+    API_URL="https://api.poliz.ai"
+  fi
+  read -r -p "What will the API URL be? (default: $API_URL )" api_url
+  if [[ $api_url == "" ]]; then api_url=$API_URL; fi
+
+  if [[ $API_USER == "" ]]; then 
+    API_USER="PolizaiApp"
+  fi
+  read -r -p "What will the API USER NAME be? (default: $API_USER )" api_user
+  if [[ $api_user == "" ]]; then api_user=$API_USER; fi
+
+  if [[ $API_EMAIL == "" ]]; then 
+    API_EMAIL="app@poliz.ai"
+  fi
+  read -r -p "What will the API User's EMAIL be? (default: $API_EMAIL )" api_email
+  if [[ $api_email == "" ]]; then api_email=$API_EMAIL; fi
+
+  while [ "$api_pass" == "" ]; do
+    read -r -s -p "What will the API USER's PASSWORD be? " api_pass
+    echo 
+  done
+
+
   # change contents of $ENV
   sed -i -e "s|DB_HOST=.*|DB_HOST=$db_host|g" $ENV
   sed -i -e "s|DB_NAME=.*|DB_NAME=$db_name|g" $ENV
   sed -i -e "s|DB_USER=.*|DB_USER=$db_user|g" $ENV
   sed -i -e "s|DB_PASS=.*|DB_PASS=$db_pass|g" $ENV
+  sed -i -e "s|API_URL=.*|API_URL=$api_url|g" $ENV
+  sed -i -e "s|API_USER=.*|API_USER=$api_user|g" $ENV
+  sed -i -e "s|API_EMAIL=.*|API_EMAIL=$api_email|g" $ENV
+  sed -i -e "s|API_PASS=.*|API_PASS=$api_pass|g" $ENV
   echo
+  source $ENV
 }
 
 get_envs() {
@@ -83,5 +116,9 @@ elif [[ "$1" == "test" ]]; then
 elif [[ "$1" == "front" || "$1" == "frontend" ]]; then
   front
 else
-  echo "nothing to be done"
+  echo "all will be done"
+  echo db
+  echo back
+  front
 fi
+
