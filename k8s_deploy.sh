@@ -117,7 +117,7 @@ data() {
   # Correct the dump (it was created with a generic user name)
   cp ${DUMP_DIR}/full_datadump.sql ${DUMP_DIR}/full_datadump.sql.orig
   sed -i -e "s|Owner: postgres|Owner: $DB_USER|g" ${DUMP_DIR}/full_datadump.sql
-  sed -i -e "s|OWNER TO postgres|OWNER TO $DB_USER|g" ${DUMP_DIR}/data/full_datadump.sql
+  sed -i -e "s|OWNER TO postgres|OWNER TO $DB_USER|g" ${DUMP_DIR}/full_datadump.sql
   
   # deploy, then recover files to original values
   $KK apply -f ${DATA_DIR}/pv.yaml
@@ -137,7 +137,7 @@ back() {
   cp ${BACK_DIR}/secret.yaml ${BACK_DIR}/secret.yaml.orig
 
   back_dbs="{postgres_database={url=postgres://$DB_USER:$DB_PASS@$DB_HOST/$DB_NAME}}"
-  sed -i -e "s|\$BACK_DBS|\"$back_dbs\"|g" ../../back/k8s/secret.yaml
+  sed -i -e "s|\$BACK_DBS|\"$back_dbs\"|g" ${BACK_DIR}/secret.yaml
 
   # deploy, then recover files to original values
   $KK apply -f ${BACK_DIR}/secret.yaml
