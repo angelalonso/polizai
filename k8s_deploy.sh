@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
+CWD=$(pwd)
 KK="sudo k3s kubectl"
 ENV=".env"
 ENV_TEMPLATE=${ENV}.template
 
 update() {
+  echo "pulling latest from Git..."
   git pull
 }
 
@@ -73,6 +75,7 @@ ask_for_vars() {
   sed -i -e "s|API_EMAIL=.*|API_EMAIL=$api_email|g" $ENV
   sed -i -e "s|API_PASS=.*|API_PASS=$api_pass|g" $ENV
   echo
+  # reload env vars
   source $ENV
 }
 
@@ -95,13 +98,59 @@ get_envs() {
 
 }
 
-db() {
-  echo "db"
+data() {
+  DATA_DIR="${CWD}/database/k8s"
+  source $ENV
 
+  cp ${DATA_DIR}/pv.yaml ${DATA_DIR}/pv.yaml.orig
+  DUMP_DIR="${CWD}/database/data"
+  sed -i -e "s|\$DATAPATH|$DUMP_DIR|g" ${DATA_DIR}/pv.yaml
+
+  cp ${DATA_DIR}/secret.yaml ${DATA_DIR}/secret.yaml.orig
+  DB_NAME_HASH=$(echo -n $DB_NAME | base64 -)
+  DB_USER_HASH=$(echo -n $DB_USER | base64 -)
+  DB_PASS_HASH=$(echo -n $DB_PASS | base64 -)
+  sed -i -e "s|\$DB_NAME|$DB_NAME_HASH|g" secret.yaml
+  sed -i -e "s|\$DB_USER|$DB_USER_HASH|g" secret.yaml
+  sed -i -e "s|\$DB_PASS|$DB_PASS_HASH|g" secret.yaml
+
+  # Correct the dump (it was created with a generic user name)
+  cp ${DUMP_DIR}/full_datadump.sql ${DUMP_DIR}/full_datadump.sql.orig
+  sed -i -e "s|Owner: postgres|Owner: $DB_USER|g" ${DUMP_DIR}/full_datadump.sql
+  sed -i -e "s|OWNER TO postgres|OWNER TO $DB_USER|g" ${DUMP_DIR}/data/full_datadump.sql
+  
+  # deploy, then recover files to original values
+  $KK apply -f ${DATA_DIR}/pv.yaml
+  $KK apply -f ${DATA_DIR}/pvc.yaml
+  $KK apply -f ${DATA_DIR}/secret.yaml
+  $KK apply -f ${DATA_DIR}/deployment.yaml
+  $KK apply -f ${DATA_DIR}/service.yaml
+  
+  cp ${DATA_DIR}/pv.yaml.orig ${DATA_DIR}/pv.yaml
+  cp ${DATA_DIR}/secret.yaml.orig ${DATA_DIR}/secret.yaml
+  cp ${DUMP_DIR}/full_datadump.sql.orig ${DUMP_DIR}/full_datadump.sql
+}
+
+back() {
+  BACK_DIR="${CWD}/back/k8s"
+
+  cp ${BACK_DIR}/secret.yaml ${BACK_DIR}/secret.yaml.orig
+
+  back_dbs="{postgres_database={url=postgres://$DB_USER:$DB_PASS@$DB_HOST/$DB_NAME}}"
+  sed -i -e "s|\$BACK_DBS|\"$back_dbs\"|g" ../../back/k8s/secret.yaml
+
+  # deploy, then recover files to original values
+  $KK apply -f ${BACK_DIR}/secret.yaml
+  $KK apply -f ${BACK_DIR}/hpa.yaml
+  $KK apply -f ${BACK_DIR}/deployment.yaml
+  $KK apply -f ${BACK_DIR}/service.yaml
+  $KK apply -f ${BACK_DIR}/ingress.yaml
+
+  cp ${BACK_DIR}/secret.yaml.orig ${BACK_DIR}/secret.yaml
 }
 
 front() {
-  FRONT_DIR="front/k8s"
+  FRONT_DIR="${CWD}/front/k8s"
   source $ENV
 
   if [[ $API_TOKEN != "" ]]; then
@@ -119,29 +168,37 @@ front() {
     source $ENV
   fi
 
+  # Backup and modify file(s)
+  cp ${FRONT_DIR}/deployment.yaml ${FRONT_DIR}/deployment.yaml.orig
+
   sed -i -e "s|\$REACT_APP_API_URL|$API_URL|g" ${FRONT_DIR}/deployment.yaml
   sed -i -e "s|\$REACT_APP_JWT_TOKEN|$API_TOKEN|g" ${FRONT_DIR}/deployment.yaml
   sed -i -e "s|\$REACT_APP_API_USER|$API_USER|g" ${FRONT_DIR}/deployment.yaml
   sed -i -e "s|\$REACT_APP_API_EMAIL|$API_EMAIL|g" ${FRONT_DIR}/deployment.yaml
   sed -i -e "s|\$REACT_APP_API_PASS|$API_PASS|g" ${FRONT_DIR}/deployment.yaml
+
+  # Apply and rollback modified file(s)
   $KK apply -f ${FRONT_DIR}/deployment.yaml
+  $KK apply -f ${FRONT_DIR}/service.yaml
+  $KK apply -f ${FRONT_DIR}/ingress.yaml
+  
+  cp ${FRONT_DIR}/deployment.yaml.orig ${FRONT_DIR}/deployment.yaml
+
 }
 
 update
 get_envs
 
 if [[ "$1" == "db" || "$1" == "data" || "$1" == "database" ]]; then
-  echo db
+  data 
 elif [[ "$1" == "back" || "$1" == "backend" || "$1" == "api" ]]; then
-  echo back
-elif [[ "$1" == "test" ]]; then
-  echo test_api
+  back
 elif [[ "$1" == "front" || "$1" == "frontend" ]]; then
   front
 else
-  echo "all will be done"
-  echo db
-  echo back
+  echo "We will deploy all"
+  data
+  back
   front
 fi
 
