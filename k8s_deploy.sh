@@ -110,9 +110,9 @@ data() {
   DB_NAME_HASH=$(echo -n $DB_NAME | base64 -)
   DB_USER_HASH=$(echo -n $DB_USER | base64 -)
   DB_PASS_HASH=$(echo -n $DB_PASS | base64 -)
-  sed -i -e "s|\$DB_NAME|$DB_NAME_HASH|g" secret.yaml
-  sed -i -e "s|\$DB_USER|$DB_USER_HASH|g" secret.yaml
-  sed -i -e "s|\$DB_PASS|$DB_PASS_HASH|g" secret.yaml
+  sed -i -e "s|\$DB_NAME|$DB_NAME_HASH|g" ${DATA_DIR}/secret.yaml
+  sed -i -e "s|\$DB_USER|$DB_USER_HASH|g" ${DATA_DIR}/secret.yaml
+  sed -i -e "s|\$DB_PASS|$DB_PASS_HASH|g" ${DATA_DIR}/secret.yaml
 
   # Correct the dump (it was created with a generic user name)
   cp ${DUMP_DIR}/full_datadump.sql ${DUMP_DIR}/full_datadump.sql.orig
