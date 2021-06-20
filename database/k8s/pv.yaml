@@ -3,6 +3,7 @@ kind: PersistentVolume
 metadata:
   name: polizai-db-pv-volume 
   labels:
+    app: polizai-db
     type: local
 spec:
   storageClassName: manual 
