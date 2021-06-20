@@ -100,13 +100,16 @@ get_envs() {
 
 data() {
   DATA_DIR="${CWD}/database/k8s"
+  DUMP_DIR="${CWD}/database/data"
+  DUMP_IN_USE_DIR="${DUMP_DIR}/in_use"
   source $ENV
 
+  # Backup files we will modify
   cp ${DATA_DIR}/pv.yaml ${DATA_DIR}/pv.yaml.orig
-  DUMP_DIR="${CWD}/database/data"
-  sed -i -e "s|\$DATAPATH|$DUMP_DIR|g" ${DATA_DIR}/pv.yaml
-
   cp ${DATA_DIR}/secret.yaml ${DATA_DIR}/secret.yaml.orig
+  cp ${DUMP_DIR}/full_datadump.sql ${DUMP_DIR}/full_datadump.sql.orig
+  
+
   DB_NAME_HASH=$(echo -n $DB_NAME | base64 -)
   DB_USER_HASH=$(echo -n $DB_USER | base64 -)
   DB_PASS_HASH=$(echo -n $DB_PASS | base64 -)
@@ -115,9 +118,14 @@ data() {
   sed -i -e "s|\$DB_PASS|$DB_PASS_HASH|g" ${DATA_DIR}/secret.yaml
 
   # Correct the dump (it was created with a generic user name)
-  cp ${DUMP_DIR}/full_datadump.sql ${DUMP_DIR}/full_datadump.sql.orig
   sed -i -e "s|Owner: postgres|Owner: $DB_USER|g" ${DUMP_DIR}/full_datadump.sql
   sed -i -e "s|OWNER TO postgres|OWNER TO $DB_USER|g" ${DUMP_DIR}/full_datadump.sql
+
+  # Create another folder+file to isolate what we keep in Git, what we modify, and what the pods will use
+  mkdir -p ${DUMP_IN_USE_DIR}
+  cp ${DUMP_DIR}/full_datadump.sql ${DUMP_IN_USE}/data.sql
+  sed -i -e "s|\$DATAPATH|$DUMP_IN_USE_DIR|g" ${DATA_DIR}/pv.yaml
+  
   
   # deploy, then recover files to original values
   $KK apply -f ${DATA_DIR}/pv.yaml
@@ -134,6 +142,7 @@ data() {
 back() {
   BACK_DIR="${CWD}/back/k8s"
 
+  # Backup files we will modify
   cp ${BACK_DIR}/secret.yaml ${BACK_DIR}/secret.yaml.orig
 
   back_dbs="{postgres_database={url=postgres://$DB_USER:$DB_PASS@$DB_HOST/$DB_NAME}}"
@@ -153,6 +162,9 @@ front() {
   FRONT_DIR="${CWD}/front/k8s"
   source $ENV
 
+  # Backup and modify file(s)
+  cp ${FRONT_DIR}/deployment.yaml ${FRONT_DIR}/deployment.yaml.orig
+
   if [[ $API_TOKEN != "" ]]; then
     read -r -p "Do you want to get a new TOKEN? [y/n]" change_token 
     if [[ $change_token == "y" ]]; then
@@ -167,9 +179,6 @@ front() {
     sed -i -e "s|API_TOKEN=.*|API_TOKEN=$TOKEN|g" $ENV
     source $ENV
   fi
-
-  # Backup and modify file(s)
-  cp ${FRONT_DIR}/deployment.yaml ${FRONT_DIR}/deployment.yaml.orig
 
   sed -i -e "s|\$REACT_APP_API_URL|$API_URL|g" ${FRONT_DIR}/deployment.yaml
   sed -i -e "s|\$REACT_APP_JWT_TOKEN|$API_TOKEN|g" ${FRONT_DIR}/deployment.yaml
