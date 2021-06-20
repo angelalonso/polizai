@@ -141,6 +141,7 @@ data() {
 
 back() {
   BACK_DIR="${CWD}/back/k8s"
+  source $ENV
 
   # Backup files we will modify
   cp ${BACK_DIR}/secret.yaml ${BACK_DIR}/secret.yaml.orig
