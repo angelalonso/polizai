@@ -123,7 +123,7 @@ data() {
 
   # Create another folder+file to isolate what we keep in Git, what we modify, and what the pods will use
   mkdir -p ${DUMP_IN_USE_DIR}
-  cp ${DUMP_DIR}/full_datadump.sql ${DUMP_IN_USE}/data.sql
+  cp ${DUMP_DIR}/full_datadump.sql ${DUMP_IN_USE_DIR}/data.sql
   sed -i -e "s|\$DATAPATH|$DUMP_IN_USE_DIR|g" ${DATA_DIR}/pv.yaml
   
   
