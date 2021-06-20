@@ -165,6 +165,7 @@ front() {
 
   # Backup and modify file(s)
   cp ${FRONT_DIR}/deployment.yaml ${FRONT_DIR}/deployment.yaml.orig
+  cp ${FRONT_DIR}/secret.yaml ${FRONT_DIR}/secret.yaml.orig
 
   if [[ $API_TOKEN != "" ]]; then
     read -r -p "Do you want to get a new TOKEN? [y/n]" change_token 
@@ -182,17 +183,28 @@ front() {
   fi
 
   sed -i -e "s|\$REACT_APP_API_URL|$API_URL|g" ${FRONT_DIR}/deployment.yaml
-  sed -i -e "s|\$REACT_APP_JWT_TOKEN|$API_TOKEN|g" ${FRONT_DIR}/deployment.yaml
-  sed -i -e "s|\$REACT_APP_API_USER|$API_USER|g" ${FRONT_DIR}/deployment.yaml
-  sed -i -e "s|\$REACT_APP_API_EMAIL|$API_EMAIL|g" ${FRONT_DIR}/deployment.yaml
-  sed -i -e "s|\$REACT_APP_API_PASS|$API_PASS|g" ${FRONT_DIR}/deployment.yaml
+  #sed -i -e "s|\$REACT_APP_JWT_TOKEN|$API_TOKEN|g" ${FRONT_DIR}/deployment.yaml
+  #sed -i -e "s|\$REACT_APP_API_USER|$API_USER|g" ${FRONT_DIR}/deployment.yaml
+  #sed -i -e "s|\$REACT_APP_API_EMAIL|$API_EMAIL|g" ${FRONT_DIR}/deployment.yaml
+  #sed -i -e "s|\$REACT_APP_API_PASS|$API_PASS|g" ${FRONT_DIR}/deployment.yaml
+
+  API_TOKEN_HASH=$(echo -n $API_TOKEN | base64 -)
+  API_USER_HASH=$(echo -n $API_USER | base64 -)
+  API_EMAIL_HASH=$(echo -n $API_EMAIL | base64 -)
+  API_PASS_HASH=$(echo -n $API_PASS | base64 -)
+  sed -i -e "s|\$JWT_TOKEN|$API_TOKEN_HASH|g" ${FRONT_DIR}/secret.yaml
+  sed -i -e "s|\$API_USER|$API_USER_HASH|g" ${FRONT_DIR}/secret.yaml
+  sed -i -e "s|\$API_EMAIL|$API_EMAIL_HASH|g" ${FRONT_DIR}/secret.yaml
+  sed -i -e "s|\$API_PASS|$API_PASS_HASH|g" ${FRONT_DIR}/secret.yaml
 
   # Apply and rollback modified file(s)
+  $KK apply -f ${FRONT_DIR}/secret.yaml
   $KK apply -f ${FRONT_DIR}/deployment.yaml
   $KK apply -f ${FRONT_DIR}/service.yaml
   $KK apply -f ${FRONT_DIR}/ingress.yaml
   
   cp ${FRONT_DIR}/deployment.yaml.orig ${FRONT_DIR}/deployment.yaml
+  cp ${FRONT_DIR}/secret.yaml.orig ${FRONT_DIR}/secret.yaml
 
 }
 

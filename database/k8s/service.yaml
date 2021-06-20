@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: polizai-db
+  labels:
+    app: polizai-db
 spec:
   selector:
     app: polizai-db

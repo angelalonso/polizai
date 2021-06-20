@@ -24,13 +24,25 @@ spec:
         - name: REACT_APP_API_URL
           value: $REACT_APP_API_URL
         - name: REACT_APP_JWT_TOKEN
-          value: $REACT_APP_JWT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: polizai-front-secret
+              key: jwt-token
         - name: REACT_APP_API_USER
-          value: $REACT_APP_API_USER
+          valueFrom:
+            secretKeyRef:
+              name: polizai-front-secret
+              key: api-user
         - name: REACT_APP_API_EMAIL
-          value: $REACT_APP_API_EMAIL
+          valueFrom:
+            secretKeyRef:
+              name: polizai-front-secret
+              key: api-email
         - name: REACT_APP_API_PASS
-          value: $REACT_APP_API_PASS
+          valueFrom:
+            secretKeyRef:
+              name: polizai-front-secret
+              key: api-pass
         readinessProbe:
           tcpSocket:
             port: 3000

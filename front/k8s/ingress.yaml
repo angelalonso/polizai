@@ -2,6 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: polizai-front
+  labels:
+    app: polizai-front
   annotations:
     kubernetes.io/ingress.class: "traefik"
 spec:
