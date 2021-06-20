@@ -183,7 +183,7 @@ front() {
   fi
 
   sed -i -e "s|\$REACT_APP_API_URL|$API_URL|g" ${FRONT_DIR}/deployment.yaml
-  #sed -i -e "s|\$REACT_APP_JWT_TOKEN|$API_TOKEN|g" ${FRONT_DIR}/deployment.yaml
+  sed -i -e "s|\$REACT_APP_JWT_TOKEN|$API_TOKEN|g" ${FRONT_DIR}/deployment.yaml
   #sed -i -e "s|\$REACT_APP_API_USER|$API_USER|g" ${FRONT_DIR}/deployment.yaml
   #sed -i -e "s|\$REACT_APP_API_EMAIL|$API_EMAIL|g" ${FRONT_DIR}/deployment.yaml
   #sed -i -e "s|\$REACT_APP_API_PASS|$API_PASS|g" ${FRONT_DIR}/deployment.yaml
