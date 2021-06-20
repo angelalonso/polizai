@@ -192,7 +192,7 @@ front() {
   API_USER_HASH=$(echo -n $API_USER | base64 -)
   API_EMAIL_HASH=$(echo -n $API_EMAIL | base64 -)
   API_PASS_HASH=$(echo -n $API_PASS | base64 -)
-  sed -i -e "s|\$JWT_TOKEN|$API_TOKEN_HASH|g" ${FRONT_DIR}/secret.yaml
+  #sed -i -e "s|\$JWT_TOKEN|$API_TOKEN_HASH|g" ${FRONT_DIR}/secret.yaml
   sed -i -e "s|\$API_USER|$API_USER_HASH|g" ${FRONT_DIR}/secret.yaml
   sed -i -e "s|\$API_EMAIL|$API_EMAIL_HASH|g" ${FRONT_DIR}/secret.yaml
   sed -i -e "s|\$API_PASS|$API_PASS_HASH|g" ${FRONT_DIR}/secret.yaml
