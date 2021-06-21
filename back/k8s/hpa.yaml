@@ -2,6 +2,8 @@ apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
   name: polizai-back
+  labels:
+    app: polizai-back
 spec:
   maxReplicas: 14
   minReplicas: 2

@@ -1,16 +1,18 @@
 # General
-- Central script to deploy all/one by one
 - Add proper health/check
+- Proper pods rotation
 
 # Front
-- Move credentials to secrets.yaml
+- Move JWT TOKEN to secrets.yaml
 - Add search
 - "my impact" site: 
   - Choose sector where you reduce, how much you reduce, 
   - Show current percentage of improvement and some extra ideas
 - Loading...
+- Use nginx in pod to speed up coming up
 
 # Database
+- Check if any other dbname as public works, make it work
 - Sidecar DB pod to make seds to full_datadump
 - Add more data
 - DB backups

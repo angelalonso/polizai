@@ -19,6 +19,9 @@ Cargo.lock
 **/*.swp
 **/*.swo
 
+# Original favicon pack
+front/favicon_io.zip
+
 phrase_backend/target/debug
 
 test/
