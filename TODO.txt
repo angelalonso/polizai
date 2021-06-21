@@ -3,7 +3,7 @@
 - Proper pods rotation
 
 # Front
-- Move credentials to secrets.yaml
+- Move JWT TOKEN to secrets.yaml
 - Add search
 - "my impact" site: 
   - Choose sector where you reduce, how much you reduce, 
@@ -12,7 +12,7 @@
 - Use nginx in pod to speed up coming up
 
 # Database
-- check if any other dbname as public works, make it work
+- Check if any other dbname as public works, make it work
 - Sidecar DB pod to make seds to full_datadump
 - Add more data
 - DB backups

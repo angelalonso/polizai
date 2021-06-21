@@ -184,14 +184,12 @@ front() {
 
   sed -i -e "s|\$REACT_APP_API_URL|$API_URL|g" ${FRONT_DIR}/deployment.yaml
   sed -i -e "s|\$REACT_APP_JWT_TOKEN|$API_TOKEN|g" ${FRONT_DIR}/deployment.yaml
-  #sed -i -e "s|\$REACT_APP_API_USER|$API_USER|g" ${FRONT_DIR}/deployment.yaml
-  #sed -i -e "s|\$REACT_APP_API_EMAIL|$API_EMAIL|g" ${FRONT_DIR}/deployment.yaml
-  #sed -i -e "s|\$REACT_APP_API_PASS|$API_PASS|g" ${FRONT_DIR}/deployment.yaml
 
   API_TOKEN_HASH=$(echo -n $API_TOKEN | base64 -)
   API_USER_HASH=$(echo -n $API_USER | base64 -)
   API_EMAIL_HASH=$(echo -n $API_EMAIL | base64 -)
   API_PASS_HASH=$(echo -n $API_PASS | base64 -)
+  # TODO: make the JWT work here too (careful with special characters)
   #sed -i -e "s|\$JWT_TOKEN|$API_TOKEN_HASH|g" ${FRONT_DIR}/secret.yaml
   sed -i -e "s|\$API_USER|$API_USER_HASH|g" ${FRONT_DIR}/secret.yaml
   sed -i -e "s|\$API_EMAIL|$API_EMAIL_HASH|g" ${FRONT_DIR}/secret.yaml
