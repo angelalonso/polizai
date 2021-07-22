@@ -52,3 +52,18 @@ pub fn co2_get_sectors(
         Json(response.response),
     )
 }
+
+#[get("/get_population")]
+pub fn co2_get_population(
+    token: Result<UserToken, status::Custom<Json<Response>>>,
+    conn: DbConn,
+) -> status::Custom<Json<Response>> {
+    if let Err(e) = token {
+        return e;
+    }
+    let response = co2_service::find_population(conn);
+    status::Custom(
+        Status::from_code(response.status_code).unwrap(),
+        Json(response.response),
+    )
+}

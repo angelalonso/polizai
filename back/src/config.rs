@@ -41,6 +41,7 @@ pub fn rocket() -> (Rocket, Option<DbConn>) {
             co2_get_main 
             ,co2_get_countries
             ,co2_get_sectors
+            ,co2_get_population
             ],
         );
 
