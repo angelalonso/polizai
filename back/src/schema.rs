@@ -24,6 +24,14 @@ table! {
 }
 
 table! {
+    population (country_id) {
+        country_id -> Int4,
+        country_name -> Varchar,
+        amount_2019 -> Double,
+    }
+}
+
+table! {
     people (id) {
         id -> Int4,
         name -> Varchar,
